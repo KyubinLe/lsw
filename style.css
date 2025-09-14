@@ -54,12 +54,12 @@ nav a:hover { text-decoration: underline; }
   margin: 2rem 0; 
   justify-items: center;   /* 각 카드 중앙 정렬 */
   text-align: center;      /* 내부 텍스트도 중앙 정렬 */
-  /*max-width: 2000px;       /* 전체 영역 넓이 제한 */
+  max-width: 2000px;       /* 전체 영역 넓이 제한 */
   margin-left: auto; 
   margin-right: auto;      /* 그리드 자체를 페이지 중앙에 위치 */
 }
 .feature { 
-  max-width: 700px;        /* 카드 크기 제한 (너무 넓어지지 않게) */
+  max-width: 300px;        /* 카드 크기 제한 (너무 넓어지지 않게) */
 }
 .feature h3 { 
   color: #2165b0; 
