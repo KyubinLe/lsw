@@ -40,7 +40,7 @@ nav a:hover { text-decoration: underline; }
 /* 메인 */
 .hero { 
   text-align: center; 
-  padding: 3rem 1rem; 
+  /*padding: 3rem 1rem; */
   background: #e9f0f7; 
 }
 .hero h2 { 
