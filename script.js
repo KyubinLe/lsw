@@ -67,9 +67,21 @@ function updateCounts() {
 // JSONP 콜백
 function handleCounts(data) {
     if (data.error) return;
-    pfCountSpan.textContent = data.pfLicenseCount;
-    ccwCountSpan.textContent = data.ccwLicenseCount;
-    guardCountSpan.textContent = data.guardCardCount;
+
+    // PF License
+    document.getElementById("pf-count").textContent = data.pf.issued;
+    document.querySelector("#pf-rejected").textContent = data.pf.rejected;
+    document.querySelector("#pf-total").textContent = data.pf.total;
+
+    // CCW License
+    document.getElementById("ccw-count").textContent = data.ccw.issued;
+    document.querySelector("#ccw-rejected").textContent = data.ccw.rejected;
+    document.querySelector("#ccw-total").textContent = data.ccw.total;
+
+    // Guard Card
+    document.getElementById("guard-count").textContent = data.guard.issued;
+    document.querySelector("#guard-rejected").textContent = data.guard.rejected;
+    document.querySelector("#guard-total").textContent = data.guard.total;
 }
 
 // 페이지 로드 시 실행
