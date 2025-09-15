@@ -224,3 +224,35 @@ header h1 {
         flex: 1 1 100%;
     }
 }
+
+/* 폼 중앙 정렬용 */
+.form-wrapper {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    padding: 20px;
+}
+
+/* 폼 자체 스타일 */
+#license-form {
+    width: 600px; /* 원하는 중앙 폼 폭 */
+    max-width: 90%; /* 화면 작으면 줄어들도록 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* 기존 그리드 유지 */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.grid-item {
+    flex: 1 1 100%; /* 한 줄 전체 사용 */
+}
+
+.grid-item-full {
+    flex: 1 1 100%;
+}
