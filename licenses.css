@@ -1,31 +1,98 @@
-body { font-family: 'Arial', sans-serif; margin:0; padding:0; background:#f0f2f5; color:#333; }
-header { background:#1e1e2f; color:white; padding:15px 0; }
-header .container { width:90%; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-header h1 { margin:0; font-size:24px; display:flex; align-items:center; gap:10px; }
-.header-logo { width:40px; height:40px; object-fit:contain; }
-nav ul { list-style:none; display:flex; gap:20px; margin:0; padding:0; }
-nav ul li a { color:white; text-decoration:none; font-weight:bold; }
-main { width:90%; margin:20px auto; }
-.license-cards { display:flex; gap:20px; flex-wrap:wrap; }
-.card { background:white; padding:20px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.15); width:250px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; }
-.card:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-.card h3 { margin-top:0; }
-.card p { font-size:14px; }
-footer { text-align:center; padding:15px 0; background:#1e1e2f; color:white; margin-top:20px; }
-footer a { color:#ffcc00; text-decoration:none; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0 20px;
+}
 
-/* License content */
-.license-content { display:none; background:white; padding:20px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1); margin-top:20px; }
+header, footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
 
-/* 목차 */
-.toc { background:#f9f9fb; padding:12px; border-left:4px solid #1e1e2f; margin-bottom:16px; }
-.toc ul { list-style:none; padding:0; margin:0; }
-.toc li { margin-bottom:6px; }
-.toc a { text-decoration:none; color:#333; font-size:14px; }
-.toc a.active { font-weight:bold; color:#1e1e2f; }
+header nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
 
-/* 반응형 */
-@media(max-width:800px){ 
-  .card { width:100%; }
-  .license-cards { flex-direction:column; }
+header nav a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  margin: 15px 0;
+}
+
+.license-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: #f9f9f9;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.license-content {
+  display: none;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.toc {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.toc ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin: 5px 0;
+}
+
+.toc a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+.topBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.topBtn:hover {
+  background-color: #0056b3;
 }
