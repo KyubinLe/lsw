@@ -6,7 +6,7 @@ const closeBtn = document.querySelector('.close');
 const form = document.getElementById('license-form');
 const pfCountSpan = document.getElementById('pf-count');
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwdaEEWYP6dldb7wf8tUfZT8PaTFDXRwiCV3h54jibEvsj566u1ncdESw3f8kP_rcef/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRhogpwuk3i-T0P7VjAY9dhY0CCdszatSl2C5uqbGUsBgKRdOwQti0HgtnxzBclzyF/exec";
 
 // Apply 버튼 클릭 시 팝업 열기
 applyButtons.forEach(btn => {
