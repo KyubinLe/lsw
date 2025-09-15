@@ -12,13 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRhogpwuk3i-T0P7VjAY9dhY0CCdszatSl2C5uqbGUsBgKRdOwQti0HgtnxzBclzyF/exec";
 
+  // steps
   const steps = Array.from(document.querySelectorAll('.form-step'));
   let currentStep = 0;
 
   function showStep(n) {
     if (n < 0) n = 0;
     if (n > steps.length - 1) n = steps.length - 1;
-    steps.forEach((step, i) => step.classList.toggle('active', i === n));
+    steps.forEach((step, i) => {
+      step.classList.toggle('active', i === n);
+    });
     currentStep = n;
     const first = steps[n].querySelector('input, select, textarea, button');
     if (first) first.focus();
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (popupContent) popupContent.scrollTop = 0;
   }
 
-  // Apply 버튼
+  // Apply 버튼 클릭 시
   applyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const licenseType = btn.getAttribute('data-license');
@@ -37,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 닫기
+  // 닫기 버튼 & 팝업 외부 클릭 & ESC
   closeBtn.addEventListener('click', () => popup.style.display = 'none');
   window.addEventListener('click', e => { if (e.target === popup) popup.style.display = 'none'; });
   window.addEventListener('keydown', e => { if (e.key === 'Escape') popup.style.display = 'none'; });
@@ -63,26 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 폼 제출
+  // 제출 이벤트
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
 
-    // STEP 7: OOC / Discord / Multi-character 입력
-    const step7Data = {
-      discordID: document.querySelector('input[name="discordID"]').value || "",
-      discordNickname: document.querySelector('input[name="discordNickname"]').value || "",
-      faction: document.querySelector('input[name="faction"]').value || "",
-      multiCharacter: document.querySelector('select[name="multiCharacter"]').value || "N",
-      multiCharacterInfo: document.querySelector('input[name="multiCharacterInfo"]').value || "",
-      oocAgree: document.querySelector('input[name="oocAgree"]').checked ? "Y" : "N"
-    };
-
-    Object.entries(step7Data).forEach(([key, value]) => formData.append(key, value));
-
+    // 모든 step 필드 포함
     const params = new URLSearchParams();
     formData.forEach((value, key) => params.append(key, value));
 
+    // JSON 형식 POST
     fetch(WEB_APP_URL, {
       method: 'POST',
       body: params
@@ -114,19 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   }
 
+  // JSONP 콜백
   window.handleCounts = function(data) {
     if (!data || data.error) return;
-    pfCountSpan.textContent = data.pf.issued;
-    document.getElementById('pf-rejected') && (document.getElementById('pf-rejected').textContent = data.pf.rejected);
-    document.getElementById('pf-total') && (document.getElementById('pf-total').textContent = data.pf.total);
-
-    ccwCountSpan.textContent = data.ccw.issued;
-    document.getElementById('ccw-rejected') && (document.getElementById('ccw-rejected').textContent = data.ccw.rejected);
-    document.getElementById('ccw-total') && (document.getElementById('ccw-total').textContent = data.ccw.total);
-
-    guardCountSpan.textContent = data.guard.issued;
-    document.getElementById('guard-rejected') && (document.getElementById('guard-rejected').textContent = data.guard.rejected);
-    document.getElementById('guard-total') && (document.getElementById('guard-total').textContent = data.guard.total);
+    pfCountSpan.textContent = data.pf.total;
+    ccwCountSpan.textContent = data.ccw.total;
+    guardCountSpan.textContent = data.guard.total;
 
     const s = document.getElementById('jsonp-stats-script');
     if (s) s.remove();
