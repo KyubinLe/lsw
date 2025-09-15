@@ -35,7 +35,6 @@ footer a { color:#ffcc00; text-decoration:none; }
 .popup-content input, .popup-content select, .popup-content textarea { width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc; margin-bottom:10px; }
 textarea { resize:vertical; min-height:60px; }
 @media(max-width:800px){ .card { width:100%; } }
-
 .license-cards {
   display: flex;
   gap: 20px;
@@ -53,6 +52,10 @@ textarea { resize:vertical; min-height:60px; }
 .license-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.license-content.hidden {
+  display: none;
 }
 
 .modal {

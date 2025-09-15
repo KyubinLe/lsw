@@ -149,24 +149,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBody = document.getElementById("modal-body");
   const closeBtn = document.querySelector(".close");
 
-  const licenses = {
-    "pf-license": "Personal Firearms License.html",
-    "guard-license": "San Andreas Guard Card.html"
-  };
-
   document.querySelectorAll(".license-card").forEach(card => {
     card.addEventListener("click", () => {
-      const target = card.dataset.target;
-      fetch(licenses[target])
-        .then(res => res.text())
-        .then(html => {
-          modalBody.innerHTML = html;
-          modal.style.display = "block";
-        })
-        .catch(err => {
-          modalBody.innerHTML = "<p>Failed to load content.</p>";
-          modal.style.display = "block";
-        });
+      const targetId = card.dataset.target;
+      const content = document.getElementById(targetId);
+      modalBody.innerHTML = content ? content.innerHTML : "<p>내용이 없습니다.</p>";
+      modal.style.display = "block";
     });
   });
 
