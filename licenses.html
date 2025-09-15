@@ -30,11 +30,19 @@
   <h1>Licenses</h1>
 
   <div class="license-cards">
+    <!-- PF License 카드 -->
     <div class="card" data-target="pf-license-content">
       <h3>PF License</h3>
       <p>Personal Firearms License — 개인 화기 면허 안내</p>
     </div>
 
+    <!-- Guard Card 카드 (추가) -->
+    <div class="card" data-target="guard-card-content">
+      <h3>Guard Card</h3>
+      <p>San Andreas Guard Card — 경비원 면허 안내</p>
+    </div>
+
+    <!-- Guard Card Manual 카드 -->
     <div class="card" data-target="guard-license-manual-content">
       <h3>Guard Card Manual</h3>
       <p>San Andreas Guard Card Manual — 경비원 안내서</p>
@@ -54,9 +62,71 @@
   </div>
 
   <!-- Guard Card 숨김 콘텐츠 -->
+  <div id="guard-card-content" class="license-content">
+    <h2>Los Santos Police Department<br>Firearms Licensing Division<br><small>[ San Andreas Guard Card ]</small></h2>
+
+    <nav class="toc">
+      <ul>
+        <li><a href="#gc-sec1">Section I - GC 목적 및 신청 절차</a></li>
+        <li><a href="#gc-sec2">Section II - GC 라이선스 사용 규정</a></li>
+        <li><a href="#gc-sec3">Section III - GC 라이선스 신청 방법</a></li>
+      </ul>
+    </nav>
+
+    <!-- Section I -->
+    <h3 id="gc-sec1">Section I - 경비 카드 목적 및 신청 절차</h3>
+    <p><strong>1.1 GC 목적</strong></p>
+    <p>샌 안드레아스 경비 카드(GC) 소지자는 샌안드레아스 주 내에서 무장 경비원으로 보안 업무를 수행할 수 있습니다. 경비원은 분실 방지, 매장 보안, 나이트클럽 보안, 학교 보안 등 다양한 역할을 수행합니다.</p>
+
+    <p><strong>1.2 GC 적용 기준</strong></p>
+    <ul>
+      <li>카드 금지 기준을 위반하지 않아야 합니다.</li>
+      <li>만 21세 이상이어야 합니다.</li>
+      <li>미국에 합법적으로 거주하는 사람.</li>
+      <li>PF 라이센스를 소지하고 있어야 합니다.</li>
+      <li>샌 안드레아스 주에서 발급한 운전면허증을 소지하거나 유효한 신분증 소지.</li>
+      <li>유효한 고등학교 졸업장 또는 GED 소지.</li>
+      <li>$5,000의 발급 수수료 지불.</li>
+    </ul>
+
+    <p><strong>1.3 GC 신청 절차</strong></p>
+    <p>신청자는 관련 서류를 모두 읽은 후 신청서를 제출합니다. 총기 면허 담당관이 검토 후 승인, 보류, 거부 또는 금지될 수 있으며, 시험 신청 및 수수료 납부 후 카드 발급.</p>
+    <p>(( /transfer LSPD 5000 명령어 사용 및 스크린샷 증명 필요 ))</p>
+    <p>(( 신청 상태 관련 총기 면허 담당자에게 직접 문의 금지. 위반 시 거부/금지 가능 ))</p>
+
+    <!-- Section II -->
+    <h3 id="gc-sec2">Section II - 경비 카드 사용 규정</h3>
+
+    <p><strong>2.1 가드 카드 금지 기준</strong></p>
+    <ul>
+      <li>중범죄 유죄 판결, 가석방/보호관찰 중인 사람, 수배 중인 사람</li>
+      <li>미국 군대 불명예 제대자, 시민/영주권자가 아닌 사람</li>
+      <li>총기 소지 금지자, 운전면허 미소지자, 정신적 결함 진단자</li>
+      <li>가정 폭력 유죄, 마약/통제 물질 중독자 등</li>
+    </ul>
+
+    <p><strong>2.2 가드 카드 취소 기준</strong></p>
+    <ul>
+      <li>면허 소지자가 불법 총기 사용, 법규 위반, PF 남용, 법 집행 총격 사건 관련 시 취소 가능</li>
+    </ul>
+
+    <p><strong>2.3 GC 사용 규정</strong></p>
+    <ul>
+      <li>PF 규정 준수</li>
+      <li>총기 노출 시 적절한 홀스터 사용</li>
+      <li>업무 구역 내에서만 총기 사용 가능</li>
+      <li>법 집행 기관 지시 준수</li>
+      <li>정부/학교/병원/법원 등 지정 장소 총기 소지 금지</li>
+    </ul>
+
+    <!-- Section III -->
+    <h3 id="gc-sec3">Section III - 경비 카드 신청 방법</h3>
+    <p>인트라넷 가입 후 신청서를 작성, 제출, 총기 면허 담당자 검토, 교육과 시험 통과 시 카드 발급.</p>
+  </div>
+
+  <!-- Guard Card Manual 숨김 콘텐츠 -->
   <div id="guard-license-manual-content" class="license-content">
     <h2>Los Santos Police Department<br>Firearms Licensing Division<br><small>[ San Andreas Guard Card Manual ]</small></h2>
-
     <nav class="toc">
       <ul>
         <li><a href="#sec1">Section I - 역할 및 책임</a></li>
@@ -71,38 +141,11 @@
         <li><a href="#sec10">Section X - 삼단봉의 사용</a></li>
       </ul>
     </nav>
-
     <h3 id="sec1">Section I - 역할 및 책임</h3>
     <p>...(내용 생략, 기존 내용 그대로 삽입)...</p>
-
-    <h3 id="sec2">Section II - 시 경찰관 또는 법 집행 기관과의 관계</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec3">Section III - 관찰 및 보고서 작성</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec4">Section IV - 질문권한 및 의사결정의 근거</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec5">Section V - 보안 검사</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec6">Section VI - 법적 책임 및 의무</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec7">Section VII - 위반, 경범죄 및 중범죄</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec8">Section VIII - 범죄자의 체포</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec9">Section IX - 총기 사용</h3>
-    <p>...(내용)...</p>
-
-    <h3 id="sec10">Section X - 삼단봉의 사용</h3>
-    <p>...(내용)...</p>
   </div>
 </main>
+
 
 <footer>
   <p>ⓒ2025 Los Santos Police Department. More Info : <a href="https://discord.gg/pD8FBb4kkZ">Discord</a></p>
