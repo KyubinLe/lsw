@@ -19,17 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function showStep(n) {
     if (n < 0) n = 0;
     if (n > steps.length - 1) n = steps.length - 1;
-    steps.forEach((step, i) => {
-      step.classList.toggle('active', i === n);
-    });
+    steps.forEach((step, i) => step.classList.toggle('active', i === n));
     currentStep = n;
+
     const first = steps[n].querySelector('input, select, textarea, button');
     if (first) first.focus();
+
     const popupContent = document.querySelector('.popup-content');
     if (popupContent) popupContent.scrollTop = 0;
   }
 
-  // Apply 버튼 클릭 시
+  // Apply 버튼 클릭
   applyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const licenseType = btn.getAttribute('data-license');
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 닫기 버튼 & 팝업 외부 클릭 & ESC
+  // 닫기
   closeBtn.addEventListener('click', () => popup.style.display = 'none');
   window.addEventListener('click', e => { if (e.target === popup) popup.style.display = 'none'; });
   window.addEventListener('keydown', e => { if (e.key === 'Escape') popup.style.display = 'none'; });
@@ -50,15 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.matches('.next-btn')) {
       e.preventDefault();
       const invalid = steps[currentStep].querySelector(':invalid');
-      if (invalid) {
-        invalid.focus();
-        invalid.classList.add('invalid-field');
-        setTimeout(() => invalid.classList.remove('invalid-field'), 1500);
-        return;
-      }
+      if (invalid) { invalid.focus(); invalid.classList.add('invalid-field'); setTimeout(() => invalid.classList.remove('invalid-field'), 1500); return; }
       if (currentStep < steps.length - 1) showStep(currentStep + 1);
       return;
     }
+
     if (e.target.matches('.prev-btn')) {
       e.preventDefault();
       if (currentStep > 0) showStep(currentStep - 1);
@@ -66,32 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 제출 이벤트
+  // 폼 제출
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-
-    // 모든 step 필드 포함
     const params = new URLSearchParams();
     formData.forEach((value, key) => params.append(key, value));
 
-    // JSON 형식 POST
-    fetch(WEB_APP_URL, {
-      method: 'POST',
-      body: params
-    })
-    .then(res => res.json ? res.json() : res.text())
-    .then(() => {
-      alert("License Application Submitted!");
-      popup.style.display = 'none';
-      form.reset();
-      showStep(0);
-      updateCounts();
-    })
-    .catch(err => {
-      console.error("Error submitting form:", err);
-      alert("제출 중 오류가 발생했습니다. 콘솔을 확인해주세요.");
-    });
+    fetch(WEB_APP_URL, { method: 'POST', body: params })
+      .then(res => res.json ? res.json() : res.text())
+      .then(() => {
+        alert("License Application Submitted!");
+        popup.style.display = 'none';
+        form.reset();
+        showStep(0);
+        updateCounts();
+      })
+      .catch(err => { console.error("Error submitting form:", err); alert("제출 중 오류가 발생했습니다."); });
   });
 
   // JSONP 통계 업데이트
@@ -110,9 +97,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // JSONP 콜백
   window.handleCounts = function(data) {
     if (!data || data.error) return;
-    pfCountSpan.textContent = data.pf.total;
-    ccwCountSpan.textContent = data.ccw.total;
-    guardCountSpan.textContent = data.guard.total;
+
+    pfCountSpan.textContent = data.pf.issued;
+    document.getElementById('pf-rejected').textContent = data.pf.rejected;
+    document.getElementById('pf-total').textContent = data.pf.total;
+
+    ccwCountSpan.textContent = data.ccw.issued;
+    document.getElementById('ccw-rejected').textContent = data.ccw.rejected;
+    document.getElementById('ccw-total').textContent = data.ccw.total;
+
+    guardCountSpan.textContent = data.guard.issued;
+    document.getElementById('guard-rejected').textContent = data.guard.rejected;
+    document.getElementById('guard-total').textContent = data.guard.total;
 
     const s = document.getElementById('jsonp-stats-script');
     if (s) s.remove();
