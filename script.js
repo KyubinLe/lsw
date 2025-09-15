@@ -33,6 +33,39 @@ window.addEventListener('click', (e) => {
     }
 });
 
+// 단계별 폼
+const formSteps = document.querySelectorAll('.form-step');
+const nextBtns = document.querySelectorAll('.next-btn');
+const prevBtns = document.querySelectorAll('.prev-btn');
+let currentStep = 0;
+
+function showStep(index) {
+    formSteps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+    });
+}
+
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentStep < formSteps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+});
+
+prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+});
+
+// 초기 step 표시
+showStep(currentStep);
+
 // 폼 제출 (fetch)
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -50,11 +83,12 @@ form.addEventListener('submit', (e) => {
         alert("License Application Submitted!");
         popup.style.display = 'none';
         form.reset();
+        currentStep = 0;
+        showStep(currentStep);
         updateCounts(); // 신청 수 업데이트
     })
     .catch(err => console.error("Error submitting form:", err));
 });
-
 
 // 모든 라이선스 신청 수 가져오기
 function updateCounts() {
