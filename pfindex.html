@@ -101,23 +101,26 @@
         <div class="popup-content">
             <span class="close">&times;</span>
             <h2 id="popup-title">Apply for License</h2>
-            <form id="license-form">
+            <form id="license-form" 
+                action="https://script.google.com/macros/s/AKfycbzDw8yoD4UL0MYF3016VUF9khDB09RYcSLPH6WnMBDrGEFAKDAn5zu9TBZ1j33Ed2Ld/exec" 
+                method="POST" target="hidden_iframe">
                 <label for="name">Name:</label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" name="name" required>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" name="email" required>
 
                 <label for="license">License Type:</label>
-                <input type="text" id="license" readonly>
+                <input type="text" id="license" name="license" readonly>
 
                 <button type="submit">Submit</button>
             </form>
+            <iframe name="hidden_iframe" style="display:none;"></iframe>
         </div>
     </div>
 
     <footer>
-        <p>Need Help? Join Our <a href="#">Discord</a></p>
+        <p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>
     </footer>
 
     <script src="script.js"></script>
