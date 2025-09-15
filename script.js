@@ -142,3 +142,38 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCounts();
   setInterval(updateCounts, 60000);
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modal");
+  const modalBody = document.getElementById("modal-body");
+  const closeBtn = document.querySelector(".close");
+
+  const licenses = {
+    "pf-license": "Personal Firearms License.html",
+    "guard-license": "San Andreas Guard Card.html"
+  };
+
+  document.querySelectorAll(".license-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const target = card.dataset.target;
+      fetch(licenses[target])
+        .then(res => res.text())
+        .then(html => {
+          modalBody.innerHTML = html;
+          modal.style.display = "block";
+        })
+        .catch(err => {
+          modalBody.innerHTML = "<p>Failed to load content.</p>";
+          modal.style.display = "block";
+        });
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+});
