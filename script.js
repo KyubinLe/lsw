@@ -4,7 +4,6 @@ const licenseInput = document.getElementById('license');
 const applyButtons = document.querySelectorAll('.apply-btn');
 const closeBtn = document.querySelector('.close');
 const form = document.getElementById('license-form');
-const statsUrl = "https://script.google.com/macros/s/AKfycbzDw8yoD4UL0MYF3016VUF9khDB09RYcSLPH6WnMBDrGEFAKDAn5zu9TBZ1j33Ed2Ld/exec"; // Apps Script URL
 
 // Apply 버튼 클릭 시 팝업 열기
 applyButtons.forEach(btn => {
@@ -55,10 +54,20 @@ form.addEventListener('submit', (e) => {
     });
 });
 
-fetch(statsUrl)
-  .then(res => res.json())
-  .then(data => {
-    console.log("PF License 신청 수:", data.pfLicenseCount);
-    document.getElementById("pf-count").textContent = data.pfLicenseCount;
-  })
-  .catch(err => console.error(err));
+// PF License 신청 수 가져오기
+function updatePFCount() {
+    const statsUrl = "https://script.google.com/macros/s/AKfycbzDw8yoD4UL0MYF3016VUF9khDB09RYcSLPH6WnMBDrGEFAKDAn5zu9TBZ1j33Ed2Ld/exec";
+
+    fetch(statsUrl)
+      .then(res => res.json())
+      .then(data => {
+          document.getElementById("pf-count").textContent = data.pfLicenseCount;
+      })
+      .catch(err => console.error("Error fetching PF License count:", err));
+}
+
+// 페이지 로드 시 한번 실행
+updatePFCount();
+
+// 이후 일정 시간마다 갱신하고 싶으면 (예: 1분)
+setInterval(updatePFCount, 60000);
