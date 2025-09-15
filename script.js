@@ -4,6 +4,7 @@ const licenseInput = document.getElementById('license');
 const applyButtons = document.querySelectorAll('.apply-btn');
 const closeBtn = document.querySelector('.close');
 const form = document.getElementById('license-form');
+const statsUrl = "https://script.google.com/macros/s/AKfycbzDw8yoD4UL0MYF3016VUF9khDB09RYcSLPH6WnMBDrGEFAKDAn5zu9TBZ1j33Ed2Ld/exec"; // Apps Script URL
 
 // Apply 버튼 클릭 시 팝업 열기
 applyButtons.forEach(btn => {
@@ -53,3 +54,11 @@ form.addEventListener('submit', (e) => {
         alert("Error submitting application: " + err);
     });
 });
+
+fetch(statsUrl)
+  .then(res => res.json())
+  .then(data => {
+    console.log("PF License 신청 수:", data.pfLicenseCount);
+    document.getElementById("pf-count").textContent = data.pfLicenseCount;
+  })
+  .catch(err => console.error(err));
