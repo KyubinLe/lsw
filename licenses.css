@@ -30,7 +30,6 @@ footer {
   background: #1e1e2f;
   color: white;
   z-index: 1000;        /* 다른 요소 위로 올라오도록 */
-  margin-top:20px;
 }
 
 footer a { color:#ffcc00; text-decoration:none; }
