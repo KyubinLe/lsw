@@ -1,16 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Firearms Licensing</title>
+    <link rel="stylesheet" href="pfstyle.css">
+    <link rel="icon" type="image/png" href="fld.png">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>
+            <img src="fld.png" alt="FLD Logo" class="header-logo">
+            로스 산토스 경찰국 - 화기면허 부서
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="pfindex.html">Home</a></li>
+                <li><a href="licenses.html">Licenses</a></li>
+                <li><a href="#">Statistics</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
 <section class="licenses-section">
   <h2>Licenses</h2>
   <div class="license-cards">
-    <div class="license-card" data-target="pf-license">
+    <div class="license-card" data-target="pf-license-content">
       <h3>Personal Firearms License</h3>
       <p>개인 총기 소지 면허 안내</p>
     </div>
-    <div class="license-card" data-target="guard-license">
+    <div class="license-card" data-target="guard-license-content">
       <h3>San Andreas Guard Card</h3>
-      <p>경비 카드 안내</p>
+      <p>경비원 카드 안내</p>
     </div>
   </div>
 </section>
+
+<!-- 숨김 콘텐츠 -->
+<div id="pf-license-content" class="license-content hidden">
+  <h2>Personal Firearms License</h2>
+  <p>🔹 PF License는 개인이 합법적으로 총기를 소지할 수 있도록 발급되는 면허입니다.</p>
+  <ul>
+    <li>지원 요건: 신원조회 통과</li>
+    <li>신청 비용: $500</li>
+    <li>유효 기간: 2년</li>
+  </ul>
+</div>
+
+<div id="guard-license-content" class="license-content hidden">
+  <h2>San Andreas Guard Card</h2>
+  <p>🔹 Guard Card는 보안 관련 종사자가 업무용으로 총기를 사용할 수 있는 자격증입니다.</p>
+  <ul>
+    <li>지원 요건: 보안업 종사 증명</li>
+    <li>신청 비용: $800</li>
+    <li>유효 기간: 1년</li>
+  </ul>
+</div>
 
 <!-- 모달 구조 -->
 <div id="modal" class="modal">
@@ -19,3 +68,12 @@
     <div id="modal-body"></div>
   </div>
 </div>
+</main>
+
+<footer>
+    <p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
