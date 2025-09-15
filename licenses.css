@@ -13,31 +13,10 @@ body {
 }
 
 /* 헤더 */
-header {
-  background-color: #1e1e2f;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-header h1 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-}
-
-header nav a {
-  color: #fff;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-header nav a:hover {
-  text-decoration: underline;
-}
+header { background:#1e1e2f; color:white; padding:15px 0; }
+header .container { width:90%; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+header h1 { margin:0; font-size:24px; display:flex; align-items:center; gap:10px; }
+.header-logo { width:40px; height:40px; object-fit:contain; }
 
 /* 메인 */
 main {
@@ -119,13 +98,5 @@ main {
   background-color: #333;
 }
 
-/* 푸터 */
-footer {
-  background-color: #1e1e2f;
-  color: #fff;
-  text-align: center;
-  padding: 15px 10px;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
+footer { text-align:center; padding:15px 0; background:#1e1e2f; color:white; margin-top:20px; }
+footer a { color:#ffcc00; text-decoration:none; }
