@@ -20,8 +20,19 @@ header nav a:hover {
 }
 
 main { width:90%; margin:20px auto; }
+footer {
+  position: fixed;      /* 화면 하단에 고정 */
+  bottom: 0;            /* 화면 하단에 붙이기 */
+  left: 0;              /* 왼쪽 끝 */
+  width: 100%;          /* 전체 너비 */
+  text-align: center;
+  padding: 15px 0;
+  background: #1e1e2f;
+  color: white;
+  z-index: 1000;        /* 다른 요소 위로 올라오도록 */
+  margin-top:20px;
+}
 
-footer { text-align:center; padding:15px 0; background:#1e1e2f; color:white; margin-top:20px; }
 footer a { color:#ffcc00; text-decoration:none; }
 
 h1, h2, h3 {
