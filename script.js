@@ -4,9 +4,12 @@ const licenseInput = document.getElementById('license');
 const applyButtons = document.querySelectorAll('.apply-btn');
 const closeBtn = document.querySelector('.close');
 const form = document.getElementById('license-form');
-const pfCountSpan = document.getElementById('pf-count');
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRhogpwuk3i-T0P7VjAY9dhY0CCdszatSl2C5uqbGUsBgKRdOwQti0HgtnxzBclzyF/exec";
+const pfCountSpan = document.getElementById('pf-count');
+const ccwCountSpan = document.getElementById('ccw-count');
+const guardCountSpan = document.getElementById('guard-count');
+
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwdaEEWYP6dldb7wf8tUfZT8PaTFDXRwiCV3h54jibEvsj566u1ncdESw3f8kP_rcef/exec";
 
 // Apply 버튼 클릭 시 팝업 열기
 applyButtons.forEach(btn => {
@@ -47,23 +50,25 @@ form.addEventListener('submit', (e) => {
         alert(`License Application Submitted!\nName: ${form.name.value}\nEmail: ${form.email.value}\nLicense: ${form.license.value}`);
         popup.style.display = 'none';
         form.reset();
-        updatePFCount();
+        updateCounts();
     })
     .catch(err => console.error("Error submitting form:", err));
 });
 
-// PF License 신청 수 가져오기 (fetch)
-function updatePFCount() {
-    fetch(WEB_APP_URL + "?pfCount=true")
+// 모든 라이선스 신청 수 가져오기
+function updateCounts() {
+    fetch(WEB_APP_URL + "?getCounts=true")
       .then(res => res.json())
       .then(data => {
           pfCountSpan.textContent = data.pfLicenseCount;
+          ccwCountSpan.textContent = data.ccwLicenseCount;
+          guardCountSpan.textContent = data.guardCardCount;
       })
-      .catch(err => console.error("Error fetching PF License count:", err));
+      .catch(err => console.error("Error fetching counts:", err));
 }
 
 // 페이지 로드 시 한번 실행
-updatePFCount();
+updateCounts();
 
 // 1분마다 자동 갱신
-setInterval(updatePFCount, 60000);
+setInterval(updateCounts, 60000);
