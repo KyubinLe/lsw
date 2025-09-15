@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ccwCountSpan = document.getElementById('ccw-count');
   const guardCountSpan = document.getElementById('guard-count');
 
-  const WEB_APP_URL = "YOUR_WEB_APP_URL_HERE"; // 배포된 웹앱 URL 또는 기존 값
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRhogpwuk3i-T0P7VjAY9dhY0CCdszatSl2C5uqbGUsBgKRdOwQti0HgtnxzBclzyF/exec"; // 배포된 웹앱 URL 또는 기존 값
 
   // steps
   const steps = Array.from(document.querySelectorAll('.form-step'));
