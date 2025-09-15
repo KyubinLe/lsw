@@ -98,88 +98,146 @@
     <div class="popup-content">
         <span class="close">&times;</span>
         <h2 id="popup-title">Apply for License</h2>
-<form id="license-form">
-    <!-- Step 1: 개인정보 -->
-    <fieldset class="form-step active">
-        <h3>1. 개인정보</h3>
-        <div class="grid">
-            <div class="grid-item">
-                <label for="fullName">이름 :</label>
-                <input type="text" id="fullName" name="fullName" required>
-            </div>
-            <div class="grid-item">
-                <label for="dob">생년월일 :</label>
-                <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" required>
-            </div>
-            <div class="grid-item">
-                <label for="gender">성별 :</label>
-                <select id="gender" name="gender" required>
-                    <option value="">선택</option>
-                    <option value="남">남</option>
-                    <option value="여">여</option>
-                </select>
-            </div>
-        </div>
-        <button type="button" class="next-btn">Next</button>
-    </fieldset>
+        <form id="license-form">
 
-    <!-- Step 2: 근무정보 -->
-    <fieldset class="form-step">
-        <h3>2. 근무정보</h3>
-        <div class="grid">
-            <div class="grid-item">
-                <label for="workPlace">근무기관 :</label>
-                <input type="text" id="workPlace" name="workPlace">
-            </div>
-            <div class="grid-item">
-                <label for="position">직책 :</label>
-                <input type="text" id="position" name="position">
-            </div>
-        </div>
-        <button type="button" class="prev-btn">Previous</button>
-        <button type="button" class="next-btn">Next</button>
-    </fieldset>
+            <!-- Step 1: 개인정보 -->
+            <fieldset class="form-step active">
+                <h3>1. 개인정보</h3>
+                <div class="grid">
+                    <div class="grid-item">
+                        <label>1.1 이름(이름 성) :</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    <div class="grid-item">
+                        <label>1.2 생년월일(MM/DD/YYYY) :</label>
+                        <input type="text" name="dob" placeholder="MM/DD/YYYY" required>
+                    </div>
+                    <div class="grid-item">
+                        <label>1.3 성별(남, 여) :</label>
+                        <select name="gender" required>
+                            <option value="">선택</option>
+                            <option value="남">남</option>
+                            <option value="여">여</option>
+                        </select>
+                    </div>
+                    <div class="grid-item">
+                        <label>1.4 출생지 :</label>
+                        <input type="text" name="birthPlace">
+                    </div>
+                    <div class="grid-item">
+                        <label>1.5 거주지 주소 :</label>
+                        <input type="text" name="address">
+                    </div>
+                    <div class="grid-item">
+                        <label>1.6 도시 :</label>
+                        <input type="text" name="city" value="Los Santos" readonly>
+                    </div>
+                    <div class="grid-item">
+                        <label>1.7 주 :</label>
+                        <input type="text" name="state" value="San Andreas" readonly>
+                    </div>
+                    <div class="grid-item">
+                        <label>1.8 인종 :</label>
+                        <input type="text" name="race">
+                    </div>
+                    <div class="grid-item">
+                        <label>1.9 키(cm) :</label>
+                        <input type="number" name="height">
+                    </div>
+                    <div class="grid-item">
+                        <label>1.10 몸무게(kg) :</label>
+                        <input type="number" name="weight">
+                    </div>
+                    <div class="grid-item">
+                        <label>1.11 전화번호 :</label>
+                        <input type="text" name="phone">
+                    </div>
+                </div>
+                <button type="button" class="next-btn">Next</button>
+            </fieldset>
 
-    <!-- Step 3: 거주정보 -->
-    <fieldset class="form-step">
-        <h3>3. 거주정보</h3>
-        <div class="grid">
-            <div class="grid-item">
-                <label for="residenceOwner">거주지 소유자 :</label>
-                <input type="text" id="residenceOwner" name="residenceOwner">
-            </div>
-            <div class="grid-item">
-                <label for="residenceType">거주종류 :</label>
-                <select id="residenceType" name="residenceType">
-                    <option value="자가">자가</option>
-                    <option value="임대">임대</option>
-                </select>
-            </div>
-        </div>
-        <button type="button" class="prev-btn">Previous</button>
-        <button type="button" class="next-btn">Next</button>
-    </fieldset>
+            <!-- Step 2: 근무정보 -->
+            <fieldset class="form-step">
+                <h3>2. 근무정보</h3>
+                <div class="grid">
+                    <div class="grid-item">
+                        <label>2.1.1 근무기관(직장)명 :</label>
+                        <input type="text" name="workPlace">
+                    </div>
+                    <div class="grid-item">
+                        <label>2.1.2 직책 :</label>
+                        <input type="text" name="position">
+                    </div>
+                    <div class="grid-item-full">
+                        <label>2.1.3 주 업무 내용 :</label>
+                        <textarea name="mainTask"></textarea>
+                    </div>
+                </div>
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="button" class="next-btn">Next</button>
+            </fieldset>
 
-    <!-- Step 4: 동의 및 제출 -->
-    <fieldset class="form-step">
-        <h3>4. 동의 및 제출</h3>
-        <label>
-            <input type="checkbox" name="agreePersonalInfo" required>
-            개인정보 조회에 동의합니다.
-        </label>
-        <label>
-            <input type="checkbox" name="agreeReview" required>
-            심사에 동의합니다.
-        </label>
-        <input type="text" id="license" name="license" readonly>
-        <button type="button" class="prev-btn">Previous</button>
-        <button type="submit">제출하기</button>
-    </fieldset>
-</form>
+            <!-- Step 3: 거주정보 -->
+            <fieldset class="form-step">
+                <h3>3. 거주정보</h3>
+                <div class="grid">
+                    <div class="grid-item">
+                        <label>3.1.1 거주 주소 (프로퍼티 입구에서 확인가능) :</label>
+                        <input type="text" name="residenceAddress">
+                    </div>
+                    <div class="grid-item">
+                        <label>3.1.2 거주지 주소 소유자 :</label>
+                        <input type="text" name="residenceOwner">
+                    </div>
+                    <div class="grid-item">
+                        <label>3.1.3 거주지 주소 동거/임차인 모두 작성 :</label>
+                        <input type="text" name="residenceOccupants">
+                    </div>
+                    <div class="grid-item">
+                        <label>3.1.4 거주종류 :</label>
+                        <label><input type="checkbox" name="residenceType" value="자가"> 자가</label>
+                        <label><input type="checkbox" name="residenceType" value="임대"> 임대</label>
+                    </div>
+                    <div class="grid-item">
+                        <label>3.1.5 거주지 내 금고 설치 유무 (Y/N) :</label>
+                        <input type="text" name="hasSafe">
+                    </div>
+                </div>
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="button" class="next-btn">Next</button>
+            </fieldset>
 
-    </div>
+            <!-- Step 4: 화기면허 신청사유 및 동의 -->
+            <fieldset class="form-step">
+                <h3>4. 화기면허(PF) 신청사유 및 동의</h3>
+                <label>화기면허(PF) 신청사유 :</label>
+                <textarea name="pfReason" required></textarea>
+
+                <label>
+                    <input type="checkbox" name="agreePersonalInfo" required>
+                    본인은 신청 서류를 제출함으로써 개인정보 조회에 동의합니다.
+                </label>
+                <p class="notice">
+                    개인정보 조회 범위 : 이름, 생년월일, 시민번호, 국가자격취득 및 자격정지여부, 학적부, 동산재산, 부동산재산, 전화번호, 거주지, 범죄경력, 부과된 과태료, 벌금, 납부된 벌금 일자, 배우자 이름, 의료기록, 배우자의 정보, 동거인의 신상정보
+                </p>
+
+                <label>
+                    <input type="checkbox" name="agreeReview" required>
+                    LSPD 심사에 동의합니다. 면허발급 거부사유: 경찰관에게 비협조적/무례한 태도, 조사/인터뷰에서 불성실 또는 부정확한 정보 제공, 과거 경찰과의 부정적 상호작용 등.
+                </label>
+                <p class="notice">
+                    발급 전후 위와 같은 일이 발생할 경우 면허는 취소될 수 있음을 인지합니다.
+                </p>
+
+                <input type="text" id="license" name="license" readonly>
+                <button type="button" class="prev-btn">Previous</button>
+                <button type="submit">제출하기</button>
+            </fieldset>
+
+        </form>
     </div>
 </div>
+
 
 
 <footer>
