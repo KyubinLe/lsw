@@ -5,14 +5,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Licenses | Firearms Licensing</title>
   <link rel="stylesheet" href="licenses.css">
+  <link rel="icon" type="image/png" href="fld.png">
 </head>
 <body>
 
 <header>
   <div class="container">
-    <h1><a class="logo" href="#">FLD</a> 로스 산토스 경찰국 - Firearms Licensing</h1>
+    <h1>
+      <img src="fld.png" alt="FLD Logo" class="header-logo">
+      로스 산토스 경찰국 - 화기면허 부서
+    </h1>
     <nav>
-      <a href="#">Home</a>
+      <ul>
+        <li><a href="pfindex.html">Home</a></li>
+        <li><a href="licenses.html">Licenses</a></li>
+        <li><a href="#">Statistics</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -21,13 +30,13 @@
   <h1>Licenses</h1>
 
   <div class="license-cards">
-    <div class="license-card" data-target="pf-license-content">
+    <div class="card" data-target="pf-license-content">
       <h3>PF License</h3>
       <p>Personal Firearms License — 개인 화기 면허 안내</p>
     </div>
 
-    <div class="license-card" data-target="guard-license-content">
-      <h3>Guard Card</h3>
+    <div class="card" data-target="guard-license-manual-content">
+      <h3>Guard Card Manual</h3>
       <p>San Andreas Guard Card Manual — 경비원 안내서</p>
     </div>
   </div>
@@ -45,7 +54,7 @@
   </div>
 
   <!-- Guard Card 숨김 콘텐츠 -->
-  <div id="guard-license-content" class="license-content">
+  <div id="guard-license-manual-content" class="license-content">
     <h2>Los Santos Police Department<br>Firearms Licensing Division<br><small>[ San Andreas Guard Card Manual ]</small></h2>
 
     <nav class="toc">
@@ -64,7 +73,7 @@
     </nav>
 
     <h3 id="sec1">Section I - 역할 및 책임</h3>
-    <p>...(내용 생략, 아까 주신 긴 본문 그대로 넣으시면 됩니다)...</p>
+    <p>...(내용 생략, 기존 내용 그대로 삽입)...</p>
 
     <h3 id="sec2">Section II - 시 경찰관 또는 법 집행 기관과의 관계</h3>
     <p>...(내용)...</p>
@@ -95,22 +104,8 @@
   </div>
 </main>
 
-<!-- 모달 -->
-<div id="modal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-header">
-      <h2 id="modal-title">Title</h2>
-      <button class="modal-close">&times;</button>
-    </div>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
-</div>
-
 <footer>
-  <div class="container">
-    <p>ⓒ2025 Los Santos Police Department</p>
-    <a href="#">Discord</a>
-  </div>
+  <p>ⓒ2025 Los Santos Police Department. More Info : <a href="https://discord.gg/pD8FBb4kkZ">Discord</a></p>
 </footer>
 
 <script src="licenses.js"></script>
