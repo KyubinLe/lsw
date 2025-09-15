@@ -38,7 +38,7 @@ form.addEventListener('submit', () => {
 
 // PF License 신청 수 가져오기
 function updatePFCount() {
-    const statsUrl = "https://script.google.com/macros/s/AKfycbzDw8yoD4UL0MYF3016VUF9khDB09RYcSLPH6WnMBDrGEFAKDAn5zu9TBZ1j33Ed2Ld/exec?pfCount=true";
+    const statsUrl = "https://script.google.com/macros/s/AKfycbwdaEEWYP6dldb7wf8tUfZT8PaTFDXRwiCV3h54jibEvsj566u1ncdESw3f8kP_rcef/exec?pfCount=true";
 
     fetch(statsUrl)
       .then(res => res.json())
