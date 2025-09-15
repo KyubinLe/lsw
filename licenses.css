@@ -117,3 +117,13 @@ h1, h2, h3 {
 .topBtn:hover {
   background-color: #0056b3;
 }
+
+.intro {
+  background-color: #f4f4f9;
+  border-left: 5px solid #007BFF;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
