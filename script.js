@@ -5,6 +5,7 @@ const applyButtons = document.querySelectorAll('.apply-btn');
 const closeBtn = document.querySelector('.close');
 const form = document.getElementById('license-form');
 
+// Apply 버튼 클릭 시 팝업 열기
 applyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const licenseType = btn.getAttribute('data-license');
@@ -14,16 +15,19 @@ applyButtons.forEach(btn => {
     });
 });
 
+// 팝업 닫기 버튼
 closeBtn.addEventListener('click', () => {
     popup.style.display = 'none';
 });
 
+// 팝업 바깥 클릭 시 닫기
 window.addEventListener('click', (e) => {
     if (e.target == popup) {
         popup.style.display = 'none';
     }
 });
 
+// 폼 제출 이벤트
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -41,7 +45,7 @@ form.addEventListener('submit', (e) => {
     })
     .then(res => res.text())
     .then(data => {
-        alert("License Application Submitted!\nYour application has been saved!");
+        alert(`License Application Submitted!\nYour application has been saved!`);
         popup.style.display = 'none';
         form.reset();
     })
@@ -49,4 +53,3 @@ form.addEventListener('submit', (e) => {
         alert("Error submitting application: " + err);
     });
 });
-
