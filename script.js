@@ -45,7 +45,7 @@ form.addEventListener('submit', (e) => {
     })
     .then(res => res.text())
     .then(data => {
-        alert(`License Application Submitted!\nYour application has been saved!`);
+        alert(`License Application Submitted!\nYour application has been saved!\nSubmitted at: ${new Date().toLocaleString()}`);
         popup.style.display = 'none';
         form.reset();
     })
