@@ -19,6 +19,8 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+main { width:90%; margin:20px auto; }
+
 footer { text-align:center; padding:15px 0; background:#1e1e2f; color:white; margin-top:20px; }
 footer a { color:#ffcc00; text-decoration:none; }
 
