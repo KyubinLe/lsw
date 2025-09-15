@@ -14,7 +14,21 @@ header nav a:hover {
   text-decoration: underline;
 }
 
-main { width:90%; margin:20px auto; }
+main { width:90%; margin:20px auto; margin-bottom: 70px; }
+footer {
+  position: fixed;      /* 화면 하단에 고정 */
+  bottom: 0;            /* 화면 하단에 붙이기 */
+  left: 0;              /* 왼쪽 끝 */
+  width: 100%;          /* 전체 너비 */
+  text-align: center;
+  padding: 15px 0;
+  background: #1e1e2f;
+  color: white;
+  z-index: 1000;        /* 다른 요소 위로 올라오도록 */
+  margin-top:20px;
+}
+footer a { color:#ffcc00; text-decoration:none; }
+
 .license-section { margin-bottom:40px; }
 .license-cards { display:flex; gap:20px; flex-wrap:wrap; }
 .card { background:white; padding:20px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.15); width:250px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; }
@@ -26,8 +40,7 @@ main { width:90%; margin:20px auto; }
 .stats-section th, .stats-section td { padding:10px; text-align:center; border-bottom:1px solid #ddd; }
 .stats-section th { background:#1e1e2f; color:white; }
 .stats-section tr:hover { background:#f5f5f5; }
-footer { text-align:center; padding:15px 0; background:#1e1e2f; color:white; margin-top:20px; }
-footer a { color:#ffcc00; text-decoration:none; }
+
 
 /* 팝업 */
 .popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:1000; }
