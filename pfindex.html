@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Fireamrs Licensing</title>
     <link rel="stylesheet" href="pfstyle.css">
-    <!-- Favicon -->
-<link rel="icon" type="image/png" href="fld.png">
+    <link rel="icon" type="image/png" href="fld.png">
 </head>
 <body>
 <header>
@@ -26,8 +25,7 @@
     </div>
 </header>
 
-
-    <main>
+<main>
 <section class="hero">
     <div class="hero-text">
         <h2>
@@ -39,29 +37,33 @@
     </div>
 </section>
 
+<section class="license-section">
+    <h2>활성화된 면허</h2>
+    <div class="license-cards">
+        <div class="card">
+            <h3>PF License</h3>
+            <p>Personal Firearm License for individuals</p>
+            <button class="apply-btn" data-license="PF License">Apply</button>
+        </div>
+        <div class="card">
+            <h3>CCW License</h3>
+            <p>Concealed Carry Weapon License</p>
+            <button class="apply-btn" data-license="CCW License">Apply</button>
+        </div>
+        <div class="card">
+            <h3>Guard Card</h3>
+            <p>For professional security personnel</p>
+            <button class="apply-btn" data-license="Guard Card">Apply</button>
+        </div>
+        <div class="card">
+            <h3>Re-Issuance</h3>
+            <p>Renew or reissue an existing license</p>
+            <button class="apply-btn" data-license="Re-Issuance">Apply</button>
+        </div>
+    </div>
+</section>
 
-        <section class="license-section">
-            <h2>Available Licenses</h2>
-            <div class="license-cards">
-                <div class="card">
-                    <h3>PF License</h3>
-                    <p>Personal Firearm License for individuals</p>
-                    <button class="apply-btn" data-license="PF License">Apply</button>
-                </div>
-                <div class="card">
-                    <h3>CCW License</h3>
-                    <p>Concealed Carry Weapon License</p>
-                    <button class="apply-btn" data-license="CCW License">Apply</button>
-                </div>
-                <div class="card">
-                    <h3>Guard Card</h3>
-                    <p>For professional security personnel</p>
-                    <button class="apply-btn" data-license="Guard Card">Apply</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-section">
+<section class="stats-section">
             <h2>신청 통계</h2>
             <table>
                 <thead>
@@ -96,33 +98,33 @@
         </section>
     </main>
 
-    <!-- 팝업 모달 -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2 id="popup-title">Apply for License</h2>
-            <form id="license-form" 
-                action="https://script.google.com/macros/s/AKfycbwdaEEWYP6dldb7wf8tUfZT8PaTFDXRwiCV3h54jibEvsj566u1ncdESw3f8kP_rcef/exec" 
-                method="POST" target="hidden_iframe">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+<!-- 팝업 모달 -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2 id="popup-title">Apply for License</h2>
+        <form id="license-form" 
+              action="https://script.google.com/macros/s/AKfycbwdaEEWYP6dldb7wf8tUfZT8PaTFDXRwiCV3h54jibEvsj566u1ncdESw3f8kP_rcef/exec" 
+              method="POST" target="hidden_iframe">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-                <label for="license">License Type:</label>
-                <input type="text" id="license" name="license" readonly>
+            <label for="license">License Type:</label>
+            <input type="text" id="license" name="license" readonly>
 
-                <button type="submit">Submit</button>
-            </form>
-            <iframe name="hidden_iframe" style="display:none;"></iframe>
-        </div>
+            <button type="submit">Submit</button>
+        </form>
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
     </div>
+</div>
 
-    <footer>
-        <p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>
-    </footer>
+<footer>
+    <p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
