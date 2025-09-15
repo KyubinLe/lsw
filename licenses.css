@@ -19,7 +19,7 @@ header nav a:hover {
   text-decoration: underline;
 }
 
-main { width:90%; margin:20px auto; }
+main { width:90%; margin:20px auto; margin-bottom: 70px; }
 footer {
   position: fixed;      /* 화면 하단에 고정 */
   bottom: 0;            /* 화면 하단에 붙이기 */
