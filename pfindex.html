@@ -1,244 +1,138 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Firearms Licensing</title>
-    <link rel="stylesheet" href="pfstyle.css">
-    <link rel="icon" type="image/png" href="fld.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Firearms Licensing</title>
+<link rel="stylesheet" href="pfstyle.css">
+<link rel="icon" type="image/png" href="fld.png">
 </head>
 <body>
+
 <header>
-    <div class="container">
-        <h1>
-            로스 산토스 경찰국 - 화기면허 부서
-        </h1>
-        <nav>
-            <ul>
-                <li><a href="pfindex.html">Home</a></li>
-                <li><a href="#">Licenses</a></li>
-                <li><a href="#">Statistics</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-        </nav>
-    </div>
+<div class="container">
+<h1><img src="fld.png" class="header-logo" alt="FLD Logo"> 로스 산토스 경찰국 - 화기면허 부서</h1>
+<nav>
+<ul>
+<li><a href="pfindex.html">Home</a></li>
+<li><a href="#">Licenses</a></li>
+<li><a href="#">Statistics</a></li>
+<li><a href="#">Support</a></li>
+</ul>
+</nav>
+</div>
 </header>
 
 <main>
 <section class="hero">
-    <div class="hero-text">
-        <h2>
-            <img src="fld.png" alt="FLD Logo" class="hero-logo">
-            화기면허부서에 오신 것을 환영합니다.
-        </h2>
-        <p>로스 산토스 경찰국은 산 안드레아스 주 내에서 화기면허를 발급하고 규제하는 책임을 집니다.</p>
-        <p>신청자는 요구사항과 제한사항을 이해하고 관련 정보를 읽어야 합니다.</p>
-    </div>
+<div class="hero-text">
+<h2><img src="fld.png" class="hero-logo" alt="FLD Logo"> 화기면허부서에 오신 것을 환영합니다.</h2>
+<p>로스 산토스 경찰국은 산 안드레아스 주 내에서 화기면허를 발급하고 규제하는 책임을 집니다.</p>
+</div>
 </section>
 
 <section class="license-section">
-    <h2>활성화된 면허</h2>
-    <div class="license-cards">
-        <div class="card">
-            <h3>PF License</h3>
-            <p>Personal Firearm License for individuals</p>
-            <button class="apply-btn" data-license="PF License">Apply</button>
-        </div>
-        <div class="card">
-            <h3>CCW License</h3>
-            <p>Concealed Carry Weapon License</p>
-            <button class="apply-btn" data-license="CCW License">Apply</button>
-        </div>
-        <div class="card">
-            <h3>Guard Card</h3>
-            <p>For professional security personnel</p>
-            <button class="apply-btn" data-license="Guard Card">Apply</button>
-        </div>
-    </div>
+<h2>활성화된 면허</h2>
+<div class="license-cards">
+<div class="card">
+<h3>PF License</h3>
+<p>Personal Firearm License for individuals</p>
+<button class="apply-btn" data-license="PF License">Apply</button>
+</div>
+<div class="card">
+<h3>CCW License</h3>
+<p>Concealed Carry Weapon License</p>
+<button class="apply-btn" data-license="CCW License">Apply</button>
+</div>
+<div class="card">
+<h3>Guard Card</h3>
+<p>For professional security personnel</p>
+<button class="apply-btn" data-license="Guard Card">Apply</button>
+</div>
+</div>
 </section>
 
 <section class="stats-section">
-    <h2>신청 통계</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>면허 종류</th>
-                <th>신청</th>
-                <th>반려</th>
-                <th>합계</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>PF License</td>
-                <td><span id="pf-count">0</span></td>
-                <td>3,389</td>
-                <td>11,505</td>
-            </tr>
-            <tr>
-                <td>CCW License</td>
-                <td><span id="ccw-count">0</span></td>
-                <td>3,728</td>
-                <td>5,499</td>
-            </tr>
-            <tr>
-                <td>Guard Card</td>
-                <td><span id="guard-count">0</span></td>
-                <td>1,354</td>
-                <td>2,964</td>
-            </tr>
-        </tbody>
-    </table>
+<h2>신청 통계</h2>
+<table>
+<thead>
+<tr><th>면허 종류</th><th>신청</th><th>반려</th><th>합계</th></tr>
+</thead>
+<tbody>
+<tr><td>PF License</td><td><span id="pf-count">0</span></td><td>3,389</td><td>11,505</td></tr>
+<tr><td>CCW License</td><td><span id="ccw-count">0</span></td><td>3,728</td><td>5,499</td></tr>
+<tr><td>Guard Card</td><td><span id="guard-count">0</span></td><td>1,354</td><td>2,964</td></tr>
+</tbody>
+</table>
 </section>
 </main>
 
 <!-- 팝업 모달 -->
 <div id="popup" class="popup">
-    <div class="popup-content">
-        <span class="close">&times;</span>
-        <h2 id="popup-title">Apply for License</h2>
-        <form id="license-form">
+<div class="popup-content">
+<span class="close">&times;</span>
+<h2 id="popup-title">Apply for License</h2>
+<form id="license-form">
 
-            <!-- Step 1: 개인정보 -->
-            <fieldset class="form-step active">
-                <h3>1. 개인정보</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <label>1.1 이름(이름 성) :</label>
-                        <input type="text" name="fullName" required>
-                    </div>
-                    <div class="grid-item">
-                        <label>1.2 생년월일(MM/DD/YYYY) :</label>
-                        <input type="text" name="dob" placeholder="MM/DD/YYYY" required>
-                    </div>
-                    <div class="grid-item">
-                        <label>1.3 성별(남, 여) :</label>
-                        <select name="gender" required>
-                            <option value="">선택</option>
-                            <option value="남">남</option>
-                            <option value="여">여</option>
-                        </select>
-                    </div>
-                    <div class="grid-item">
-                        <label>1.4 출생지 :</label>
-                        <input type="text" name="birthPlace">
-                    </div>
-                    <div class="grid-item">
-                        <label>1.5 거주지 주소 :</label>
-                        <input type="text" name="address">
-                    </div>
-                    <div class="grid-item">
-                        <label>1.6 도시 :</label>
-                        <input type="text" name="city" value="Los Santos" readonly>
-                    </div>
-                    <div class="grid-item">
-                        <label>1.7 주 :</label>
-                        <input type="text" name="state" value="San Andreas" readonly>
-                    </div>
-                    <div class="grid-item">
-                        <label>1.8 인종 :</label>
-                        <input type="text" name="race">
-                    </div>
-                    <div class="grid-item">
-                        <label>1.9 키(cm) :</label>
-                        <input type="number" name="height">
-                    </div>
-                    <div class="grid-item">
-                        <label>1.10 몸무게(kg) :</label>
-                        <input type="number" name="weight">
-                    </div>
-                    <div class="grid-item">
-                        <label>1.11 전화번호 :</label>
-                        <input type="text" name="phone">
-                    </div>
-                </div>
-                <button type="button" class="next-btn">Next</button>
-            </fieldset>
+<!-- 1. 개인정보 -->
+<h3>1. 개인정보</h3>
+<div class="grid">
+<div class="grid-item"><label>이름(이름 성) :</label><input type="text" name="fullName" required></div>
+<div class="grid-item"><label>생년월일(MM/DD/YYYY) :</label><input type="text" name="dob" placeholder="MM/DD/YYYY" required></div>
+<div class="grid-item"><label>성별 :</label>
+<select name="gender" required><option value="">선택</option><option value="남">남</option><option value="여">여</option></select></div>
+<div class="grid-item"><label>출생지 :</label><input type="text" name="birthPlace"></div>
+<div class="grid-item"><label>거주지 주소 :</label><input type="text" name="address"></div>
+<div class="grid-item"><label>도시 :</label><input type="text" name="city" value="Los Santos" readonly></div>
+<div class="grid-item"><label>주 :</label><input type="text" name="state" value="San Andreas" readonly></div>
+<div class="grid-item"><label>인종 :</label><input type="text" name="race"></div>
+<div class="grid-item"><label>키(cm) :</label><input type="number" name="height"></div>
+<div class="grid-item"><label>몸무게(kg) :</label><input type="number" name="weight"></div>
+<div class="grid-item"><label>전화번호 :</label><input type="text" name="phone"></div>
+</div>
 
-            <!-- Step 2: 근무정보 -->
-            <fieldset class="form-step">
-                <h3>2. 근무정보</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <label>2.1.1 근무기관(직장)명 :</label>
-                        <input type="text" name="workPlace">
-                    </div>
-                    <div class="grid-item">
-                        <label>2.1.2 직책 :</label>
-                        <input type="text" name="position">
-                    </div>
-                    <div class="grid-item-full">
-                        <label>2.1.3 주 업무 내용 :</label>
-                        <textarea name="mainTask"></textarea>
-                    </div>
-                </div>
-                <button type="button" class="prev-btn">Previous</button>
-                <button type="button" class="next-btn">Next</button>
-            </fieldset>
+<!-- 2. 근무정보 -->
+<h3>2. 근무정보</h3>
+<div class="grid">
+<div class="grid-item"><label>근무기관(직장)명 :</label><input type="text" name="workPlace"></div>
+<div class="grid-item"><label>직책 :</label><input type="text" name="position"></div>
+<div class="grid-item-full"><label>주 업무 내용 :</label><textarea name="mainTask"></textarea></div>
+</div>
 
-            <!-- Step 3: 거주정보 -->
-            <fieldset class="form-step">
-                <h3>3. 거주정보</h3>
-                <div class="grid">
-                    <div class="grid-item">
-                        <label>3.1.1 거주 주소 (프로퍼티 입구에서 확인가능) :</label>
-                        <input type="text" name="residenceAddress">
-                    </div>
-                    <div class="grid-item">
-                        <label>3.1.2 거주지 주소 소유자 :</label>
-                        <input type="text" name="residenceOwner">
-                    </div>
-                    <div class="grid-item">
-                        <label>3.1.3 거주지 주소 동거/임차인 모두 작성 :</label>
-                        <input type="text" name="residenceOccupants">
-                    </div>
-                    <div class="grid-item">
-                        <label>3.1.4 거주종류 :</label>
-                        <label><input type="checkbox" name="residenceType" value="자가"> 자가</label>
-                        <label><input type="checkbox" name="residenceType" value="임대"> 임대</label>
-                    </div>
-                    <div class="grid-item">
-                        <label>3.1.5 거주지 내 금고 설치 유무 (Y/N) :</label>
-                        <input type="text" name="hasSafe">
-                    </div>
-                </div>
-                <button type="button" class="prev-btn">Previous</button>
-                <button type="button" class="next-btn">Next</button>
-            </fieldset>
+<!-- 3. 거주정보 -->
+<h3>3. 거주정보</h3>
+<div class="grid">
+<div class="grid-item"><label>거주지 주소 소유자 :</label><input type="text" name="residenceOwner"></div>
+<div class="grid-item"><label>거주종류 :</label>
+<select name="residenceType"><option value="자가">자가</option><option value="임대">임대</option></select></div>
+<div class="grid-item"><label>거주지 내 금고 설치 유무 :</label>
+<select name="hasSafe"><option value="Y">Y</option><option value="N">N</option></select></div>
+</div>
 
-            <!-- Step 4: 화기면허 신청사유 및 동의 -->
-            <fieldset class="form-step">
-                <h3>4. 화기면허(PF) 신청사유 및 동의</h3>
-                <label>화기면허(PF) 신청사유 :</label>
-                <textarea name="pfReason" required></textarea>
+<!-- 4. 화기면허 신청사유 -->
+<h3>4. 화기면허(PF) 신청사유</h3>
+<div class="grid-item-full"><textarea name="pfReason" required></textarea></div>
 
-                <label>
-                    <input type="checkbox" name="agreePersonalInfo" required>
-                    본인은 신청 서류를 제출함으로써 개인정보 조회에 동의합니다.
-                </label>
-                <p class="notice">
-                    개인정보 조회 범위 : 이름, 생년월일, 시민번호, 국가자격취득 및 자격정지여부, 학적부, 동산재산, 부동산재산, 전화번호, 거주지, 범죄경력, 부과된 과태료, 벌금, 납부된 벌금 일자, 배우자 이름, 의료기록, 배우자의 정보, 동거인의 신상정보
-                </p>
+<!-- 5. 개인정보 조회 동의 -->
+<h3>5. 개인정보 조회 동의</h3>
+<div class="grid-item-full">
+<label><input type="checkbox" name="agreePersonalInfo" required> 본인은 신청 서류를 제출함으로써 개인정보 조회에 동의합니다.</label>
+</div>
 
-                <label>
-                    <input type="checkbox" name="agreeReview" required>
-                    LSPD 심사에 동의합니다. 면허발급 거부사유: 경찰관에게 비협조적/무례한 태도, 조사/인터뷰에서 불성실 또는 부정확한 정보 제공, 과거 경찰과의 부정적 상호작용 등.
-                </label>
-                <p class="notice">
-                    발급 전후 위와 같은 일이 발생할 경우 면허는 취소될 수 있음을 인지합니다.
-                </p>
+<!-- 6. 심사 동의 -->
+<h3>6. 심사에 대한 동의</h3>
+<div class="grid-item-full">
+<label><input type="checkbox" name="agreeReview" required> 로스산토스 시 경찰국(LSPD)의 심사에 동의합니다.</label>
+</div>
 
-                <input type="text" id="license" name="license" readonly>
-                <button type="button" class="prev-btn">Previous</button>
-                <button type="submit">제출하기</button>
-            </fieldset>
-
-        </form>
-    </div>
+<input type="hidden" name="license" id="license">
+<button type="submit">제출하기</button>
+</form>
+</div>
 </div>
 
 <footer>
-    <p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>
+<p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>
 </footer>
 
 <script src="script.js"></script>
