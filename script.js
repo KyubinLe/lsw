@@ -50,25 +50,4 @@ form.addEventListener('submit', (e) => {
         alert("License Application Submitted!");
         popup.style.display = 'none';
         form.reset();
-        updateCounts(); // 신청 수 업데이트
-    })
-    .catch(err => console.error("Error submitting form:", err));
-});
-
-// 통계 정보 업데이트
-function updateCounts() {
-    fetch(WEB_APP_URL + "?getCounts=true")
-      .then(res => res.json())
-      .then(data => {
-          pfCountSpan.textContent = data.pfLicenseCount;
-          ccwCountSpan.textContent = data.ccwLicenseCount;
-          guardCountSpan.textContent = data.guardCardCount;
-      })
-      .catch(err => console.error("Error fetching counts:", err));
-}
-
-// 페이지 로드 시 실행
-updateCounts();
-
-// 1분마다 자동 갱신
-setInterval(updateCounts, 60000);
+        updateCounts(); // 신청 수
