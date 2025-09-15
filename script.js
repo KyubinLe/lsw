@@ -143,25 +143,3 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCounts, 60000);
 });
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modal");
-  const modalBody = document.getElementById("modal-body");
-  const closeBtn = document.querySelector(".close");
-
-  document.querySelectorAll(".license-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const targetId = card.dataset.target;
-      const content = document.getElementById(targetId);
-      modalBody.innerHTML = content ? content.innerHTML : "<p>내용이 없습니다.</p>";
-      modal.style.display = "block";
-    });
-  });
-
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  });
-});
