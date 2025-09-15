@@ -99,19 +99,100 @@
         <span class="close">&times;</span>
         <h2 id="popup-title">Apply for License</h2>
         <form id="license-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <!-- 기존 기본 정보 -->
+            <h3>1. 개인정보</h3>
+            <label for="fullName">이름(이름 성) :</label>
+            <input type="text" id="fullName" name="fullName" required>
 
-            <label for="license">License Type:</label>
+            <label for="dob">생년월일(MM/DD/YYYY) :</label>
+            <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" required>
+
+            <label for="gender">성별 :</label>
+            <select id="gender" name="gender" required>
+                <option value="">선택</option>
+                <option value="남">남</option>
+                <option value="여">여</option>
+            </select>
+
+            <label for="birthPlace">출생지 :</label>
+            <input type="text" id="birthPlace" name="birthPlace">
+
+            <label for="address">거주지 주소 :</label>
+            <input type="text" id="address" name="address">
+
+            <label for="city">도시 :</label>
+            <input type="text" id="city" name="city" value="Los Santos" readonly>
+
+            <label for="state">주 :</label>
+            <input type="text" id="state" name="state" value="San Andreas" readonly>
+
+            <label for="race">인종 :</label>
+            <input type="text" id="race" name="race">
+
+            <label for="height">키(cm) :</label>
+            <input type="number" id="height" name="height">
+
+            <label for="weight">몸무게(kg) :</label>
+            <input type="number" id="weight" name="weight">
+
+            <label for="phone">전화번호 :</label>
+            <input type="text" id="phone" name="phone">
+
+            <!-- 근무 정보 -->
+            <h3>2. 근무정보</h3>
+            <label for="workPlace">근무기관(직장)명 :</label>
+            <input type="text" id="workPlace" name="workPlace">
+
+            <label for="position">직책 :</label>
+            <input type="text" id="position" name="position">
+
+            <label for="mainTask">주 업무 내용 :</label>
+            <textarea id="mainTask" name="mainTask"></textarea>
+
+            <!-- 거주 정보 -->
+            <h3>3. 거주정보</h3>
+            <label for="residenceOwner">거주지 주소 소유자 :</label>
+            <input type="text" id="residenceOwner" name="residenceOwner">
+
+            <label for="residenceType">거주종류 :</label>
+            <select id="residenceType" name="residenceType">
+                <option value="자가">자가</option>
+                <option value="임대">임대</option>
+            </select>
+
+            <label for="hasSafe">거주지 내 금고 설치 유무 :</label>
+            <select id="hasSafe" name="hasSafe">
+                <option value="Y">Y</option>
+                <option value="N">N</option>
+            </select>
+
+            <!-- 화기면허 신청사유 -->
+            <h3>4. 화기면허(PF) 신청사유</h3>
+            <textarea id="pfReason" name="pfReason" required></textarea>
+
+            <!-- 개인정보 조회 동의 -->
+            <h3>5. 개인정보 조회 동의여부</h3>
+            <label>
+                <input type="checkbox" name="agreePersonalInfo" required>
+                본인은 신청 서류를 제출함으로써 개인정보 조회에 동의합니다.
+            </label>
+
+            <!-- 심사 동의 -->
+            <h3>6. 심사에 대한 동의여부</h3>
+            <label>
+                <input type="checkbox" name="agreeReview" required>
+                로스산토스 시 경찰국(LSPD)의 심사에 동의합니다.
+            </label>
+
+            <label for="license">면허 종류:</label>
             <input type="text" id="license" name="license" readonly>
 
             <button type="submit">제출하기</button>
         </form>
     </div>
 </div>
+
 
 <footer>
     <p>ⓒ2025 Los Santos Police Department. More Info : <a href="#">Discord</a></p>

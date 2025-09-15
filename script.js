@@ -47,13 +47,14 @@ form.addEventListener('submit', (e) => {
     })
     .then(res => res.text())
     .then(() => {
-        alert(`License Application Submitted!\nName: ${form.name.value}\nEmail: ${form.email.value}\nLicense: ${form.license.value}`);
+        alert("License Application Submitted!");
         popup.style.display = 'none';
         form.reset();
-        updateCounts();
+        updateCounts(); // 신청 수 업데이트
     })
     .catch(err => console.error("Error submitting form:", err));
 });
+
 
 // 모든 라이선스 신청 수 가져오기
 function updateCounts() {
