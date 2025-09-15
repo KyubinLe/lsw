@@ -9,7 +9,7 @@ const pfCountSpan = document.getElementById('pf-count');
 const ccwCountSpan = document.getElementById('ccw-count');
 const guardCountSpan = document.getElementById('guard-count');
 
-const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRhogpwuk3i-T0P7VjAY9dhY0CCdszatSl2C5uqbGUsBgKRdOwQti0HgtnxzBclzyF/exec";
 
 // Step Form
 let currentStep = 0;
