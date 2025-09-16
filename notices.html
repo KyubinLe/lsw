@@ -30,7 +30,7 @@
   <main class="container">
     <h1>공지사항</h1>
     <div id="notice-list" class="notice-list"></div>
-    <button id="addNoticeBtn" class="add-btn">+ 공지 추가</button>
+    <button id="addNoticeBtn" class="add-btn" style="display:none;">+ 공지 추가</button>
   </main>
 
   <!-- 공지 상세 모달 -->
@@ -75,6 +75,7 @@
   <!-- Scripts -->
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec";
+    let isLoggedIn = false;
 
     // 공지 생성 함수
     function createNoticeCard(date, title, content){
@@ -108,7 +109,7 @@
       });
     }
 
-    // 공지 저장 (CORS-safe)
+    // 공지 저장
     document.getElementById("saveNotice").addEventListener("click", async ()=>{
       const title = document.getElementById("new-title").value;
       const content = document.getElementById("new-content").value;
@@ -138,6 +139,22 @@
       }
     });
 
+    // 로그인 처리
+    document.getElementById("loginSubmit").addEventListener("click", ()=>{
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // 간단한 예시 (실제 환경에서는 서버 인증 필요)
+      if(username === "admin" && password === "1234"){
+        isLoggedIn = true;
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("addNoticeBtn").style.display = "block"; // 로그인 성공 시 표시
+        alert("로그인 성공!");
+      } else {
+        alert("아이디 또는 비밀번호가 잘못되었습니다.");
+      }
+    });
+
     // 모달 제어
     const modals = document.querySelectorAll(".modal");
     document.querySelectorAll(".close").forEach((btn, idx)=>{
@@ -148,8 +165,13 @@
     });
 
     document.getElementById("addNoticeBtn").addEventListener("click", ()=>{
-      document.getElementById("addNoticeModal").style.display="block";
+      if(isLoggedIn){
+        document.getElementById("addNoticeModal").style.display="block";
+      } else {
+        alert("로그인 후 이용 가능합니다.");
+      }
     });
+
     document.getElementById("loginBtn").addEventListener("click", ()=>{
       document.getElementById("loginModal").style.display="block";
     });
