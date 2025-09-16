@@ -112,6 +112,10 @@ footer {
   text-align:center;
   padding:1rem 2rem;
   flex-shrink: 0;
+
+  /* 아래 두 줄 추가 */
+  margin-top: auto; /* main이 남은 공간을 차지하도록 */
+  flex-shrink: 0;   /* 크기 줄어들지 않게 */
 }
 
 /* 모바일 반응형 */
