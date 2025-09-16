@@ -1,0 +1,48 @@
+/* 공지사항 카드 컨테이너 */
+.notice-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* 개별 카드 */
+.notice-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  border: 1px solid #e0e5ec;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notice-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.notice-date {
+  font-weight: bold;
+  color: #555;
+  margin-right: 1rem;
+  min-width: 100px;
+}
+
+.notice-text {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .notice-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notice-date {
+    margin-bottom: 0.3rem;
+  }
+}
