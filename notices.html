@@ -77,14 +77,14 @@
 const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec';
 const noticeCardsContainer = document.getElementById("notice-cards");
 
-// ----- 카드 생성 함수 -----
+// ----- 카드 생성 -----
 function createNoticeCard(date, title, content){
   const card = document.createElement("div");
   card.classList.add("notice-card");
   card.dataset.title = title;
   card.dataset.content = content;
 
-  const dateOnly = date.split("T")[0]; // 시간 제거
+  const dateOnly = date.split("T")[0]; 
   card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
 
   card.addEventListener("click",()=>{
@@ -114,7 +114,6 @@ const addModal = document.getElementById("add-modal");
 const saveNotice = document.getElementById("save-notice");
 
 loginBtn.addEventListener("click",()=>loginModal.style.display="flex");
-
 loginSubmit.addEventListener("click",()=>{
   const user=document.getElementById("username").value;
   const pass=document.getElementById("password").value;
