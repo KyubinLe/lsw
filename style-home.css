@@ -64,31 +64,24 @@ nav a.active {
   font-weight: bold;
 }
 
-/* 메인 */
-main {
+
+/* main 영역 */
+main.container {
   flex: 1;
-  padding: 2rem;
-  background-color: #f5f8fd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
-/* 소개 섹션 */
+/* Intro */
 .intro {
-  text-align: center;
-  margin-bottom: 3rem;
+  text-align:center;
+  padding:3rem 1rem;
+  background:#fff;
+  margin-bottom:2rem;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
-.intro h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.intro p {
-  font-size: 1.1rem;
-}
+.intro h2 { font-size:2rem; margin-bottom:1rem; }
+.intro p { font-size:1.1rem; color:#444; }
 
 /* 카드 컨테이너 */
 .cards-container {
@@ -127,15 +120,6 @@ footer {
     align-items: center;
   }
 
-  header .header-flex {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
+  header .header-flex { flex-direction: column; align-items: center; }
+  nav ul { flex-direction: column; gap: 0.5rem; margin-top:0.5rem; }
 }
