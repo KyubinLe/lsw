@@ -15,21 +15,26 @@ nav a.active { font-weight:bold; border-bottom:2px solid #fff; }
 .hero h2 { font-size:2rem; margin-bottom:1rem; }
 .hero p { font-size:1.2rem; color:#333; }
 
-/* 카드 스타일 (홈 페이지) */
+/* 카드 컨테이너 중앙 정렬 */
 .features {
   display: flex;
   justify-content: center; /* 가로 중앙 정렬 */
   flex-wrap: wrap;         /* 화면 좁아지면 자동 줄바꿈 */
-  gap: 2rem;
+  gap: 2rem;               /* 카드 사이 간격 */
   margin: 2rem 0;
+  padding: 1rem;
+  background-color: #eef2f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+/* 개별 카드 */
 .feature-card {
   background: #fff;
-  border: 2px solid #e0e5ec;
+  border: 1px solid #ccc; 
   border-radius: 12px;
   padding: 1.5rem;
-  width: 280px;           /* 고정 너비로 중앙 정렬 유지 */
+  width: 280px;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -43,19 +48,16 @@ nav a.active { font-weight:bold; border-bottom:2px solid #fff; }
 @media(max-width: 768px) {
   .features {
     justify-content: center;
+    flex-direction: column;  /* 세로로 쌓기 */
+    align-items: center;
+    gap: 1.5rem;
   }
   .feature-card {
     width: 90%; /* 모바일에서 카드 넓이 조절 */
   }
+  .hero h2 { font-size:1.5rem; }
+  .hero p { font-size:1rem; }
 }
 
 /* 푸터 */
 footer { background:#222; color:#fff; text-align:center; padding:1rem; margin-top:2rem; }
-
-/* 모바일 반응형 */
-@media(max-width:768px){
-  .features { justify-content: center; flex-direction:column; gap:1.5rem; align-items:center; }
-  .feature-card { width:90%; }
-  .hero h2 { font-size:1.5rem; }
-  .hero p { font-size:1rem; }
-}
