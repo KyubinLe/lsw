@@ -133,7 +133,7 @@ saveNotice.addEventListener("click", async ()=>{
     createNoticeCard(date, title, content);
 
     try {
-      await fetch('AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ',{
+      await fetch('https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec',{
         method:'POST',
         body:JSON.stringify({date,title,content}),
         headers:{'Content-Type':'application/json'}
@@ -149,7 +149,7 @@ saveNotice.addEventListener("click", async ()=>{
 // Google Sheets 불러오기
 async function loadNotices(){
   try{
-    const res = await fetch('AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ');
+    const res = await fetch('https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec');
     const data = await res.json();
     data.forEach(item=>{
       const dateOnly = item.date.split("T")[0];
