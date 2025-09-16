@@ -75,16 +75,17 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec'; // 배포 후 URL
+  const WEB_APP_URL = 'https://script.google.com/macros/s/YOUR_WEB_APP_ID/exec';
   const noticeCardsContainer = document.getElementById("notice-cards");
 
+  // ----- 카드 생성 -----
   function createNoticeCard(date, title, content){
     const card = document.createElement("div");
     card.classList.add("notice-card");
     card.dataset.title = title;
     card.dataset.content = content;
 
-    const dateOnly = date.split("T")[0];
+    const dateOnly = date.split("T")[0]; 
     card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
 
     card.addEventListener("click",()=>{
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     noticeCardsContainer.prepend(card);
   }
 
-  // 모달 닫기
+  // ----- 모달 닫기 -----
   document.querySelectorAll(".modal .close").forEach(btn=>{
     btn.addEventListener("click",()=>btn.parentElement.parentElement.style.display="none");
   });
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(e.target.classList.contains("modal")) e.target.style.display="none";
   });
 
-  // 로그인 & 공지 추가
+  // ----- 로그인 & 공지 추가 -----
   const loginBtn = document.getElementById("login-btn");
   const loginModal = document.getElementById("login-modal");
   const loginSubmit = document.getElementById("login-submit");
@@ -126,33 +127,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addNoticeBtn.addEventListener("click",()=>addModal.style.display="flex");
 
-  saveNotice.addEventListener("click", async ()=>{
+  // JSONP 방식으로 공지 추가
+  saveNotice.addEventListener("click", ()=>{
     const title = document.getElementById("new-title").value;
     const content = document.getElementById("new-content").value;
-    const date = new Date().toISOString().split("T")[0];
+    if(!title || !content) return alert("제목과 내용을 입력해주세요.");
 
-    if(title && content){
-      createNoticeCard(date, title, content);
-
-      try {
-        const res = await fetch(WEB_APP_URL,{
-          method:'POST',
-          body: JSON.stringify({date,title,content}),
-          headers:{'Content-Type':'application/json'}
-        });
-        console.log(await res.text()); // 서버 응답 확인
-      } catch(err){
-        console.error("Google Sheets 저장 실패:",err);
-        alert("Google Sheets 저장 실패! 서버 문제일 수 있습니다.");
+    const callbackName = "handleAddNotice";
+    window[callbackName] = function(data){
+      if(data && data.length > 0){
+        const latest = data[0];
+        createNoticeCard(latest.date, latest.title, latest.content);
       }
-
+      delete window[callbackName];
       addModal.style.display="none";
       document.getElementById("new-title").value='';
       document.getElementById("new-content").value='';
-    }
+    };
+
+    const script = document.createElement("script");
+    script.src = `${WEB_APP_URL}?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}&callback=${callbackName}`;
+    document.body.appendChild(script);
   });
 
-  // JSONP로 공지사항 불러오기
+  // ----- JSONP로 공지사항 불러오기 -----
   function loadNotices(){
     const callbackName = "handleNotices";
     const existing = document.getElementById('jsonp-notices');
@@ -165,10 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   }
 
+  // JSONP 콜백
   window.handleNotices = function(data){
-    if(!data || !data.notices) return;
-    data.notices.forEach(item=>{
-      createNoticeCard(item.date, item.title, item.content);
+    if(!data) return;
+    data.forEach(item=>{
+      const dateOnly = item.date.split("T")[0];
+      createNoticeCard(dateOnly, item.title, item.content);
     });
   };
 
