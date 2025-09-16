@@ -1,7 +1,6 @@
 /* 기본 세팅 */
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: 'Noto Sans KR', sans-serif; line-height:1.6; color:#333; background:#f9f9f9; }
-
 .container { width:90%; max-width:1100px; margin:0 auto; }
 
 /* 헤더 */
@@ -11,30 +10,54 @@ nav ul { list-style:none; display:flex; gap:1rem; margin-left:auto; }
 nav a { color:#fff; text-decoration:none; }
 nav a.active { font-weight:bold; border-bottom:2px solid #fff; }
 
-/* 푸터 */
-footer { background:#222; color:#fff; text-align:center; padding:1rem; margin-top:2rem; }
-
 /* Hero section */
 .hero { text-align:center; padding:3rem 1rem; background:#e9f0f7; }
 .hero h2 { font-size:2rem; margin-bottom:1rem; }
 .hero p { font-size:1.2rem; color:#333; }
 
-/* 카드 스타일 (홈) */
-.features { display:flex; justify-content:center; align-items:center; gap:2rem; flex-wrap:wrap; margin:2rem 0; }
-.feature-card {
-  background:#fff; border:2px solid #e0e5ec; border-radius:12px;
-  padding:1.5rem; text-align:center; width:280px; cursor:default;
-  transition: transform 0.2s ease, box-shadow 0.2s ease; margin:auto;
+/* 카드 스타일 (홈 페이지) */
+.features {
+  display:flex;
+  justify-content:center; /* 가로 중앙 정렬 */
+  align-items:flex-start;
+  gap:2rem;
+  flex-wrap:wrap;
+  margin:2rem 0;
+  text-align:center;
 }
+
+.feature-card {
+  background:#fff;
+  border:2px solid #e0e5ec;
+  border-radius:12px;
+  padding:1.5rem;
+  width:280px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor:default;
+}
+
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
-.feature-card h3 { color:#2165b0; margin-bottom:0.5rem; }
-.feature-card p { color:#555; margin:0; }
+
+.feature-card h3 {
+  color:#2165b0;
+  margin-bottom:0.5rem;
+}
+
+.feature-card p {
+  color:#555;
+  margin:0;
+}
+
+/* 푸터 */
+footer { background:#222; color:#fff; text-align:center; padding:1rem; margin-top:2rem; }
 
 /* 모바일 반응형 */
 @media(max-width:768px){
-  .features { flex-direction:column; gap:1.5rem; }
+  .features { flex-direction:column; gap:1.5rem; align-items:center; }
   .feature-card { width:90%; }
+  .hero h2 { font-size:1.5rem; }
+  .hero p { font-size:1rem; }
 }
