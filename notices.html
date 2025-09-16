@@ -75,17 +75,16 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec';
+  const WEB_APP_URL = '웹앱_URL_여기에'; // 배포 후 URL
   const noticeCardsContainer = document.getElementById("notice-cards");
 
-  // 카드 생성
   function createNoticeCard(date, title, content){
     const card = document.createElement("div");
     card.classList.add("notice-card");
     card.dataset.title = title;
     card.dataset.content = content;
 
-    const dateOnly = date.split("T")[0]; 
+    const dateOnly = date.split("T")[0];
     card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
 
     card.addEventListener("click",()=>{
@@ -130,21 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
   saveNotice.addEventListener("click", async ()=>{
     const title = document.getElementById("new-title").value;
     const content = document.getElementById("new-content").value;
-    const date = new Date().toISOString();
+    const date = new Date().toISOString().split("T")[0];
 
     if(title && content){
       createNoticeCard(date, title, content);
 
       try {
-        const params = new URLSearchParams();
-        params.append("date", date);
-        params.append("title", title);
-        params.append("content", content);
-
-        await fetch(WEB_APP_URL,{
+        const res = await fetch(WEB_APP_URL,{
           method:'POST',
-          body:params
+          body: JSON.stringify({date,title,content}),
+          headers:{'Content-Type':'application/json'}
         });
+        console.log(await res.text()); // 서버 응답 확인
       } catch(err){
         console.error("Google Sheets 저장 실패:",err);
         alert("Google Sheets 저장 실패! 서버 문제일 수 있습니다.");
@@ -156,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // JSONP로 공지 불러오기
+  // JSONP로 공지사항 불러오기
   function loadNotices(){
     const callbackName = "handleNotices";
     const existing = document.getElementById('jsonp-notices');
@@ -169,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   }
 
-  // JSONP 콜백
   window.handleNotices = function(data){
     if(!data || !data.notices) return;
     data.notices.forEach(item=>{
