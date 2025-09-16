@@ -33,6 +33,7 @@
     <p>LS Works 관련 최신 소식과 공지를 확인하세요.</p>
     <button id="add-notice-btn" style="display:none;">공지사항 추가</button>
   </section>
+
   <section class="notice-cards" id="notice-cards"></section>
 </main>
 
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.dataset.title = title;
     card.dataset.content = content;
 
-    const dateOnly = date.split("T")[0]; 
+    const dateOnly = date ? date.split("T")[0] : "";
     card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
 
     card.addEventListener("click",()=>{
@@ -127,39 +128,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addNoticeBtn.addEventListener("click",()=>addModal.style.display="flex");
 
-  // JSONP 방식으로 공지 추가
-  saveNotice.addEventListener("click", ()=>{
+  saveNotice.addEventListener("click", async ()=>{
     const title = document.getElementById("new-title").value;
     const content = document.getElementById("new-content").value;
-    if(!title || !content) return alert("제목과 내용을 입력해주세요.");
 
-    const callbackName = "handleAddNotice";
-    window[callbackName] = function(data){
-      if(data && data.length > 0){
-        const latest = data[0];
-        createNoticeCard(latest.date, latest.title, latest.content);
+    if(title && content){
+      createNoticeCard("", title, content); // 날짜는 웹앱에서 처리
+
+      try {
+        // JSONP로 POST 처리
+        const callbackName = "handlePost";
+        const script = document.createElement('script');
+        script.src = `${WEB_APP_URL}?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}&callback=${callbackName}`;
+        document.body.appendChild(script);
+        script.onload = ()=>script.remove();
+      } catch(err){
+        console.error("Google Sheets 저장 실패:",err);
+        alert("Google Sheets 저장 실패!");
       }
-      delete window[callbackName];
+
       addModal.style.display="none";
       document.getElementById("new-title").value='';
       document.getElementById("new-content").value='';
-    };
-
-    const script = document.createElement("script");
-    script.src = `${WEB_APP_URL}?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}&callback=${callbackName}`;
-    document.body.appendChild(script);
+    }
   });
 
   // ----- JSONP로 공지사항 불러오기 -----
   function loadNotices(){
     const callbackName = "handleNotices";
     const existing = document.getElementById('jsonp-notices');
-    if (existing) existing.remove();
+    if(existing) existing.remove();
 
     const script = document.createElement('script');
     script.id = 'jsonp-notices';
     script.src = `${WEB_APP_URL}?callback=${callbackName}`;
-    script.onerror = () => console.error('JSONP script load error');
+    script.onerror = ()=>console.error('JSONP script load error');
     document.body.appendChild(script);
   }
 
@@ -170,6 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const dateOnly = item.date.split("T")[0];
       createNoticeCard(dateOnly, item.title, item.content);
     });
+  };
+
+  // JSONP POST 콜백 (저장 후 알림)
+  window.handlePost = function(res){
+    if(res.status === "success") alert("공지사항이 저장되었습니다!");
   };
 
   loadNotices();
