@@ -1,27 +1,122 @@
- /* 기본 레이아웃 */
-    body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-    header, footer { background: #222; color: #fff; padding: 1rem 0; }
-    header .container, footer .container, main.container { width: 90%; max-width: 1100px; margin: 0 auto; }
-    h1.logo { margin: 0; font-size: 1.5rem; }
-    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; }
-    nav a { color: #fff; text-decoration: none; }
-    nav a.active { font-weight: bold; border-bottom: 2px solid #fff; }
+/* 기본 세팅 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; color: #333; }
+.container { width: 90%; max-width: 1100px; margin: auto; }
 
-    /* Intro */
-    .intro { text-align: center; padding: 3rem 1rem; background: #fff; margin-bottom: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .intro h2 { font-size: 2rem; margin-bottom: 1rem; }
-    .intro p { font-size: 1.1rem; color: #444; }
+/* 헤더 */
+header { background: #2165b0; color: #fff; padding: 1rem 0; }
+header .logo { font-size: 1.5rem; }
+nav ul { list-style: none; display: flex; gap: 1.5rem; }
+nav a { color: #fff; text-decoration: none; font-weight: bold; }
+nav a.active { text-decoration: underline; }
 
-    /* 카드 레이아웃 */
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card { background: #fff; padding: 2rem 1.5rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s ease; }
-    .card:hover { transform: translateY(-5px); }
-    .card h3 { margin: 0 0 0.5rem; font-size: 1.3rem; }
-    .card p { color: #555; margin: 0; }
+/* 메인 */
+.hero { 
+  text-align: center; 
+  padding: 3rem 1rem; 
+  background: #e9f0f7; 
+}
+.hero h2 { font-size: 2rem; margin-bottom: 1rem; }
 
-    /* 모달 */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-    .modal-content { background: #fff; padding: 2rem; border-radius: 12px; max-width: 700px; width: 90%; max-height: 80%; overflow-y: auto; position: relative; }
-    .modal h3 { margin-top: 0; }
-    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: #333; }
-  
+.intro { text-align: center; padding: 3rem 1rem; background: #fff; margin-bottom: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.intro h2 { font-size: 2rem; margin-bottom: 1rem; }
+.intro p { font-size: 1.1rem; color: #444; }
+
+/* 카드 레이아웃 */
+.features { 
+  display: flex;                     /* flex로 변경 */
+  justify-content: center;           /* 가로 가운데 정렬 */
+  align-items: center;               /* 세로 정렬 (필요시) */
+  gap: 2rem;                         /* 카드 간격 */
+  flex-wrap: wrap;                   /* 화면 줄어들면 줄바꿈 */
+  margin: 2rem 0; 
+  text-align: center;
+}
+
+.feature-card {
+  background: #fff;
+  border: 2px solid #e0e5ec;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  width: 280px;                      /* 카드 고정 너비 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.feature-card h3 {
+  color: #2165b0;
+  margin-bottom: 0.5rem;
+}
+
+/* 서비스 리스트 */
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.service {
+  background: #fff;
+  border: 2px solid #e0e5ec;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.service h3 {
+  color: #2165b0;
+  margin-bottom: 0.5rem;
+}
+
+/* 모달 기본 스타일 */
+.modal {
+  display: none; /* 처음엔 숨김 */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+/* 팝업 모달 */
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+
+/* 푸터 */
+footer { background: #333; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
+
