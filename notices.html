@@ -171,8 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
   window.handleNotices = function(data){
     if(!data) return;
     data.forEach(item=>{
-      const dateOnly = item.date.split("T")[0];
-      createNoticeCard(dateOnly, item.title, item.content);
+      // 날짜 문자열 -> Date 객체
+      let date = new Date(item.date);
+      // 하루 더하기
+      date.setDate(date.getDate() + 1);
+
+      // YYYY-MM-DD 형태로 변환
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      createNoticeCard(dateStr, item.title, item.content);
     });
   };
 
