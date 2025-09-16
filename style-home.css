@@ -11,6 +11,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* 컨테이너 */
+.container { width:90%; max-width:1100px; margin:0 auto; }
+
 /* 헤더 */
 header {
   background-color: #222;
