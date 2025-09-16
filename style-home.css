@@ -42,6 +42,8 @@ header .logo-text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
+  text-align: center;
+  flex: 1; /* 중앙 정렬 */
 }
 
 header nav ul {
@@ -70,6 +72,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center; /* 중앙 정렬 */
 }
 
 /* 소개 섹션 */
@@ -108,7 +111,7 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* 푸터 */
+/* 푸터 - 하단 고정 */
 footer {
   background-color: #222;
   color: #fff;
@@ -126,7 +129,7 @@ footer {
 
   header .header-flex {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   header nav ul {
