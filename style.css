@@ -2,6 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; color: #333; }
 .container { width: 90%; max-width: 1100px; margin: auto; }
+
 /* 페이지 공통 배경 (index 제외) */
 body.subpage {
   background: #f4f6f9;
@@ -23,7 +24,6 @@ body.subpage {
   color: #2165b0;
   margin-bottom: 1rem;
 }
-
 .subpage h3 {
   color: #444;
   margin-top: 1.5rem;
@@ -32,12 +32,12 @@ body.subpage {
 
 /* 헤더 */
 header { background: #2165b0; color: #fff; padding: 1rem 0; }
-header .logo { font-size: 1.5rem; }
+header .logo { font-size: 1.5rem; font-weight: bold; }
 nav ul { list-style: none; display: flex; gap: 1.5rem; }
 nav a { color: #fff; text-decoration: none; font-weight: bold; }
-nav a:hover { text-decoration: underline; }
+nav a:hover, nav a.active { text-decoration: underline; }
 
-/* 메인 */
+/* 메인 - Hero */
 .hero { 
   text-align: center; 
   padding: 3rem 1rem; 
@@ -47,25 +47,42 @@ nav a:hover { text-decoration: underline; }
   font-size: 2rem; 
   margin-bottom: 1rem; 
 }
-.features { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 2rem; 
-  margin: 2rem 0; 
-  justify-items: center;   /* 각 카드 중앙 정렬 */
-  text-align: center;      /* 내부 텍스트도 중앙 정렬 */
-  max-width: 1000px;       /* 전체 영역 넓이 제한 */
-  margin-left: auto; 
-  margin-right: auto;      /* 그리드 자체를 페이지 중앙에 위치 */
-}
-.feature { 
-  max-width: 300px;        /* 카드 크기 제한 (너무 넓어지지 않게) */
-}
-.feature h3 { 
-  color: #2165b0; 
-  margin-bottom: 0.5rem; 
-}
 
+/* 메인 - Features (카드 스타일) */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1000px;
+  justify-items: center;
+}
+.feature {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+}
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+.feature h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2165b0;
+  margin-bottom: 0.75rem;
+}
+.feature p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
 
 /* 푸터 */
 footer { background: #333; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
