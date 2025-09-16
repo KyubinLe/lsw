@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 날짜 문자열 -> Date 객체
       let date = new Date(item.date);
       // 하루 더하기
-      date.setDate(date.getDate() + 1);
+      date.setDate(date.getDate());
 
       // YYYY-MM-DD 형태로 변환
       const yyyy = date.getFullYear();
