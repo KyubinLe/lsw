@@ -80,14 +80,19 @@
 
   <!-- ===== JS ===== -->
   <script>
-    // ----- 공지 카드 생성 -----
     const noticeCardsContainer = document.getElementById("notice-cards");
+
+    // ----- 카드 생성 함수 -----
     function createNoticeCard(date, title, content){
       const card = document.createElement("div");
       card.classList.add("notice-card");
       card.dataset.title = title;
       card.dataset.content = content;
-      card.innerHTML = `<span class="notice-date">${date}</span><p class="notice-text">${title}</p>`;
+
+      // 카드에 날짜만 표시
+      const dateOnly = date.split("T")[0];
+
+      card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
       card.addEventListener("click",()=>{
         document.getElementById("modal-title").textContent = title;
         document.getElementById("modal-body").textContent = content;
@@ -100,9 +105,11 @@
     document.querySelectorAll(".modal .close").forEach(btn=>{
       btn.addEventListener("click",()=>btn.parentElement.parentElement.style.display="none");
     });
-    window.addEventListener("click", e=>{if(e.target.classList.contains("modal")) e.target.style.display="none";});
+    window.addEventListener("click", e=>{
+      if(e.target.classList.contains("modal")) e.target.style.display="none";
+    });
 
-    // ----- 로그인 -----
+    // ----- 로그인 / 공지 추가 -----
     const loginBtn = document.getElementById("login-btn");
     const loginModal = document.getElementById("login-modal");
     const loginSubmit = document.getElementById("login-submit");
@@ -112,6 +119,7 @@
     const saveNotice = document.getElementById("save-notice");
 
     loginBtn.addEventListener("click",()=>loginModal.style.display="flex");
+
     loginSubmit.addEventListener("click",()=>{
       const user=document.getElementById("username").value;
       const pass=document.getElementById("password").value;
@@ -127,7 +135,7 @@
     saveNotice.addEventListener("click", async ()=>{
       const title = document.getElementById("new-title").value;
       const content = document.getElementById("new-content").value;
-      const date = new Date().toISOString().split("T")[0];
+      const date = new Date().toISOString().split("T")[0]; // YYYY-MM-DD 형식
 
       if(title && content){
         createNoticeCard(date, title, content);
@@ -152,7 +160,10 @@
       try{
         const res = await fetch('https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec');
         const data = await res.json();
-        data.forEach(item=>createNoticeCard(item.date,item.title,item.content));
+        data.forEach(item=>{
+          const dateOnly = item.date.split("T")[0]; // 시간 제거
+          createNoticeCard(dateOnly, item.title, item.content);
+        });
       }catch(err){console.error("공지사항 불러오기 실패:",err);}
     }
     loadNotices();
