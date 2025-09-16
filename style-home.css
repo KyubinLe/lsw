@@ -104,12 +104,12 @@ main.container {
   margin-bottom: 0.5rem;
 }
 
-/* 푸터 - 하단 고정 */
+/* 푸터 */
 footer {
   background-color: #222;
   color: #fff;
-  text-align: center;
-  padding: 1rem 2rem;
+  text-align:center;
+  padding:1rem 2rem;
   flex-shrink: 0;
 }
 
