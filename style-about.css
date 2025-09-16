@@ -1,38 +1,33 @@
 /* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
+/* 전체 body */
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #f5f5f5;
+  line-height:1.6;
+  color:#333;
+  background:#f9f9f9;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-/* 컨테이너 */
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 /* 헤더 */
 header {
   background-color: #222;
   color: #fff;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
 }
 
 header .header-flex {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  /* 중앙 정렬 및 폭 제한 추가 */
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 header .logo {
@@ -44,23 +39,40 @@ header .logo {
 
 header .logo img {
   height: 40px;
-  margin-right: 0.5rem;
 }
 
-header nav ul {
+header .logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 0.5rem;
+  text-align: center;
+  flex: 1;
+}
+
+nav ul {
   display: flex;
   list-style: none;
   gap: 1.5rem;
 }
 
-header nav a {
-  text-decoration: none;
+nav a {
   color: #fff;
-  font-weight: 500;
+  text-decoration: none;
 }
 
-header nav a.active {
-  border-bottom: 2px solid #fff;
+nav a.active {
+  font-weight: bold;
+}
+
+/* main 영역 */
+main.container {
+  flex: 1;
+
+  /* 중앙 정렬 적용 */
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* 카드 공통 */
@@ -116,28 +128,19 @@ header nav a.active {
 
 /* 푸터 */
 footer {
-  margin-top: auto;
-  background: #222;
+  background-color: #222;
   color: #fff;
-  text-align: center;
-  padding: 1.5rem 0;
-  font-size: 0.9rem;
+  text-align:center;
+  padding:1rem 2rem;
+  margin-top: auto; /* main이 남은 공간을 차지하도록 */
+  flex-shrink: 0;   /* 크기 줄어들지 않게 */
 }
 
-/* 반응형 */
+/* 모바일 반응형 */
 @media (max-width: 768px) {
-  header .header-flex {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  header nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .section-card ul {
-    padding-left: 1rem;
-  }
+  header .header-flex { flex-direction: column; align-items: center; }
+  nav ul { flex-direction: column; gap: 0.5rem; margin-top:0.5rem; }
+  .cards-container { grid-template-columns:1fr; gap:1rem; }
+  .card { width:100%; }
+  .modal-content { padding:1.5rem; }
 }
