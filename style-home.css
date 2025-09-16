@@ -12,9 +12,6 @@ body {
   flex-direction: column;
 }
 
-/* 컨테이너 */
-.container { width:90%; max-width:1100px; margin:0 auto; }
-
 /* 헤더 */
 header {
   background-color: #222;
@@ -26,6 +23,11 @@ header .header-flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  /* 중앙 정렬 및 폭 제한 추가 */
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 header .logo {
@@ -48,7 +50,6 @@ header .logo-text {
   flex: 1;
 }
 
-
 nav ul {
   display: flex;
   list-style: none;
@@ -64,10 +65,14 @@ nav a.active {
   font-weight: bold;
 }
 
-
 /* main 영역 */
 main.container {
   flex: 1;
+
+  /* 중앙 정렬 적용 */
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* Intro */
@@ -78,6 +83,10 @@ main.container {
   margin-bottom:2rem;
   border-radius:12px;
   box-shadow:0 2px 8px rgba(0,0,0,0.1);
+
+  /* 폭 제한 */
+  max-width: 1100px;
+  margin: 0 auto 2rem auto;
 }
 
 .intro h2 { font-size:2rem; margin-bottom:1rem; }
@@ -85,12 +94,13 @@ main.container {
 
 /* 카드 컨테이너 */
 .cards-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
+/* 카드 */
 .card {
   background:#fff;
   border:2px solid #e0e5ec;
@@ -105,9 +115,7 @@ main.container {
   box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
-.card h3 {
-  margin-bottom: 0.5rem;
-}
+.card h3 { margin-bottom: 0.5rem; }
 
 /* 푸터 */
 footer {
@@ -115,20 +123,15 @@ footer {
   color: #fff;
   text-align:center;
   padding:1rem 2rem;
-  flex-shrink: 0;
-
-  /* 아래 두 줄 추가 */
   margin-top: auto; /* main이 남은 공간을 차지하도록 */
   flex-shrink: 0;   /* 크기 줄어들지 않게 */
 }
 
 /* 모바일 반응형 */
 @media (max-width: 768px) {
-  .cards-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
   header .header-flex { flex-direction: column; align-items: center; }
   nav ul { flex-direction: column; gap: 0.5rem; margin-top:0.5rem; }
+  .cards-container { grid-template-columns:1fr; gap:1rem; }
+  .card { width:100%; }
+  .modal-content { padding:1.5rem; }
 }
