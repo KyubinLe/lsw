@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>공지사항 | LS Works</title>
+  <link rel="icon" type="image/png" href="lsw.png">
   <link rel="stylesheet" href="style-base.css">
   <link rel="stylesheet" href="notice-style.css">
-  <link rel="icon" type="image/png" href="lsw.png">
 </head>
 <body>
+
+  <!-- ===== 헤더 ===== -->
   <header>
     <div class="container header-flex">
       <a href="index.html" class="logo">
@@ -27,6 +29,7 @@
     </div>
   </header>
 
+  <!-- ===== 메인 ===== -->
   <main class="container">
     <section class="intro">
       <h1>공지사항</h1>
@@ -34,12 +37,10 @@
       <button id="add-notice-btn" style="display:none;">공지사항 추가</button>
     </section>
 
-    <section class="notice-cards" id="notice-cards">
-      <!-- Google Spreadsheet에서 불러온 공지사항이 들어갑니다 -->
-    </section>
+    <section class="notice-cards" id="notice-cards"></section>
   </main>
 
-  <!-- 공지사항 모달 -->
+  <!-- ===== 공지사항 모달 ===== -->
   <div id="notice-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -48,7 +49,7 @@
     </div>
   </div>
 
-  <!-- 공지 추가 모달 -->
+  <!-- ===== 공지 추가 모달 ===== -->
   <div id="add-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -59,7 +60,7 @@
     </div>
   </div>
 
-  <!-- 로그인 모달 -->
+  <!-- ===== 로그인 모달 ===== -->
   <div id="login-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -71,44 +72,37 @@
     </div>
   </div>
 
+  <!-- ===== 푸터 ===== -->
   <footer>
     <p>“We Move. We Build. We Employ. – 일할 의지가 있는 모든 시민에게 기회는 열려 있습니다.”</p>
     <p>© 2025 LS Works. All rights reserved.</p>
   </footer>
 
+  <!-- ===== JS ===== -->
   <script>
-    // ---------- 모달 & 카드 ----------
-    const noticeModal = document.getElementById("notice-modal");
-    const modalTitle = document.getElementById("modal-title");
-    const modalBody = document.getElementById("modal-body");
+    // ----- 공지 카드 생성 -----
     const noticeCardsContainer = document.getElementById("notice-cards");
-
-    function createNoticeCard(date, title, content) {
+    function createNoticeCard(date, title, content){
       const card = document.createElement("div");
       card.classList.add("notice-card");
       card.dataset.title = title;
       card.dataset.content = content;
-
       card.innerHTML = `<span class="notice-date">${date}</span><p class="notice-text">${title}</p>`;
-      card.addEventListener("click", () => {
-        modalTitle.textContent = title;
-        modalBody.textContent = content;
-        noticeModal.style.display = "flex";
+      card.addEventListener("click",()=>{
+        document.getElementById("modal-title").textContent = title;
+        document.getElementById("modal-body").textContent = content;
+        document.getElementById("notice-modal").style.display="flex";
       });
       noticeCardsContainer.prepend(card);
     }
 
-    document.querySelectorAll(".modal .close").forEach(btn => {
-      btn.addEventListener("click", () => {
-        btn.parentElement.parentElement.style.display = "none";
-      });
+    // ----- 모달 닫기 -----
+    document.querySelectorAll(".modal .close").forEach(btn=>{
+      btn.addEventListener("click",()=>btn.parentElement.parentElement.style.display="none");
     });
+    window.addEventListener("click", e=>{if(e.target.classList.contains("modal")) e.target.style.display="none";});
 
-    window.addEventListener("click", e => {
-      if(e.target.classList.contains("modal")) e.target.style.display = "none";
-    });
-
-    // ---------- 로그인 ----------
+    // ----- 로그인 -----
     const loginBtn = document.getElementById("login-btn");
     const loginModal = document.getElementById("login-modal");
     const loginSubmit = document.getElementById("login-submit");
@@ -117,57 +111,52 @@
     const addModal = document.getElementById("add-modal");
     const saveNotice = document.getElementById("save-notice");
 
-    loginBtn.addEventListener("click", () => loginModal.style.display = "flex");
-
-    loginSubmit.addEventListener("click", () => {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-      if(user === "admin" && pass === "1234") {
-        loginModal.style.display = "none";
-        addNoticeBtn.style.display = "inline-block";
+    loginBtn.addEventListener("click",()=>loginModal.style.display="flex");
+    loginSubmit.addEventListener("click",()=>{
+      const user=document.getElementById("username").value;
+      const pass=document.getElementById("password").value;
+      if(user==="admin" && pass==="1234"){
+        loginModal.style.display="none";
+        addNoticeBtn.style.display="inline-block";
         alert("로그인 성공!");
-      } else loginMsg.textContent = "아이디 또는 비밀번호가 잘못되었습니다.";
+      } else loginMsg.textContent="아이디 또는 비밀번호가 잘못되었습니다.";
     });
 
-    addNoticeBtn.addEventListener("click", () => addModal.style.display = "flex");
+    addNoticeBtn.addEventListener("click",()=>addModal.style.display="flex");
 
-    saveNotice.addEventListener("click", async () => {
+    saveNotice.addEventListener("click", async ()=>{
       const title = document.getElementById("new-title").value;
       const content = document.getElementById("new-content").value;
       const date = new Date().toISOString().split("T")[0];
 
-      if(title && content) {
+      if(title && content){
         createNoticeCard(date, title, content);
 
-        // ---------- Google Sheets에 저장 ----------
+        // ----- Google Sheets 저장 -----
         try {
-          await fetch('https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec', {
-            method: 'POST',
-            body: JSON.stringify({date, title, content}),
-            headers: {'Content-Type':'application/json'}
+          await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL',{
+            method:'POST',
+            body:JSON.stringify({date,title,content}),
+            headers:{'Content-Type':'application/json'}
           });
-        } catch(err) {
-          console.error("Google Sheets 저장 실패:", err);
-        }
+        } catch(err){console.error("Google Sheets 저장 실패:",err);}
 
-        addModal.style.display = "none";
-        document.getElementById("new-title").value = '';
-        document.getElementById("new-content").value = '';
+        addModal.style.display="none";
+        document.getElementById("new-title").value='';
+        document.getElementById("new-content").value='';
       }
     });
 
-    // ---------- Google Sheets에서 불러오기 ----------
-    async function loadNotices() {
-      try {
-        const res = await fetch('https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec');
+    // ----- Google Sheets 불러오기 -----
+    async function loadNotices(){
+      try{
+        const res = await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL');
         const data = await res.json();
-        data.forEach(item => createNoticeCard(item.date, item.title, item.content));
-      } catch(err) {
-        console.error("공지사항 불러오기 실패:", err);
-      }
+        data.forEach(item=>createNoticeCard(item.date,item.title,item.content));
+      }catch(err){console.error("공지사항 불러오기 실패:",err);}
     }
-
     loadNotices();
   </script>
+
 </body>
 </html>
