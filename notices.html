@@ -6,7 +6,6 @@
 <title>공지사항 | LS Works</title>
 <link rel="stylesheet" href="style-base.css">
 <link rel="stylesheet" href="notice-style.css">
-<link rel="icon" type="image/png" href="lsw.png">
 </head>
 <body>
 
@@ -75,98 +74,108 @@
 </footer>
 
 <script>
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec';
-const noticeCardsContainer = document.getElementById("notice-cards");
+document.addEventListener('DOMContentLoaded', () => {
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzwjYMWl1DKf_e8iMSsdpW6qdt03blGxHQaBaaZyv--i_D_0YNBaM7Qpjr08tI4ECQPGQ/exec';
+  const noticeCardsContainer = document.getElementById("notice-cards");
 
-// ----- 카드 생성 -----
-function createNoticeCard(date, title, content){
-  const card = document.createElement("div");
-  card.classList.add("notice-card");
-  card.dataset.title = title;
-  card.dataset.content = content;
+  // ----- 카드 생성 -----
+  function createNoticeCard(date, title, content){
+    const card = document.createElement("div");
+    card.classList.add("notice-card");
+    card.dataset.title = title;
+    card.dataset.content = content;
 
-  const dateOnly = date.split("T")[0]; 
-  card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
+    const dateOnly = date.split("T")[0]; 
+    card.innerHTML = `<span class="notice-date">${dateOnly}</span><p class="notice-text">${title}</p>`;
 
-  card.addEventListener("click",()=>{
-    document.getElementById("modal-title").textContent = title;
-    document.getElementById("modal-body").textContent = content;
-    document.getElementById("notice-modal").style.display="flex";
+    card.addEventListener("click",()=>{
+      document.getElementById("modal-title").textContent = title;
+      document.getElementById("modal-body").textContent = content;
+      document.getElementById("notice-modal").style.display="flex";
+    });
+
+    noticeCardsContainer.prepend(card);
+  }
+
+  // ----- 모달 닫기 -----
+  document.querySelectorAll(".modal .close").forEach(btn=>{
+    btn.addEventListener("click",()=>btn.parentElement.parentElement.style.display="none");
+  });
+  window.addEventListener("click", e=>{
+    if(e.target.classList.contains("modal")) e.target.style.display="none";
   });
 
-  noticeCardsContainer.prepend(card);
-}
+  // ----- 로그인 & 공지 추가 -----
+  const loginBtn = document.getElementById("login-btn");
+  const loginModal = document.getElementById("login-modal");
+  const loginSubmit = document.getElementById("login-submit");
+  const loginMsg = document.getElementById("login-msg");
+  const addNoticeBtn = document.getElementById("add-notice-btn");
+  const addModal = document.getElementById("add-modal");
+  const saveNotice = document.getElementById("save-notice");
 
-// ----- 모달 닫기 -----
-document.querySelectorAll(".modal .close").forEach(btn=>{
-  btn.addEventListener("click",()=>btn.parentElement.parentElement.style.display="none");
-});
-window.addEventListener("click", e=>{
-  if(e.target.classList.contains("modal")) e.target.style.display="none";
-});
+  loginBtn.addEventListener("click",()=>loginModal.style.display="flex");
+  loginSubmit.addEventListener("click",()=>{
+    const user=document.getElementById("username").value;
+    const pass=document.getElementById("password").value;
+    if(user==="admin" && pass==="1234"){
+      loginModal.style.display="none";
+      addNoticeBtn.style.display="inline-block";
+      alert("로그인 성공!");
+    } else loginMsg.textContent="아이디 또는 비밀번호가 잘못되었습니다.";
+  });
 
-// ----- 로그인 & 공지 추가 -----
-const loginBtn = document.getElementById("login-btn");
-const loginModal = document.getElementById("login-modal");
-const loginSubmit = document.getElementById("login-submit");
-const loginMsg = document.getElementById("login-msg");
-const addNoticeBtn = document.getElementById("add-notice-btn");
-const addModal = document.getElementById("add-modal");
-const saveNotice = document.getElementById("save-notice");
+  addNoticeBtn.addEventListener("click",()=>addModal.style.display="flex");
 
-loginBtn.addEventListener("click",()=>loginModal.style.display="flex");
-loginSubmit.addEventListener("click",()=>{
-  const user=document.getElementById("username").value;
-  const pass=document.getElementById("password").value;
-  if(user==="admin" && pass==="1234"){
-    loginModal.style.display="none";
-    addNoticeBtn.style.display="inline-block";
-    alert("로그인 성공!");
-  } else loginMsg.textContent="아이디 또는 비밀번호가 잘못되었습니다.";
-});
+  saveNotice.addEventListener("click", async ()=>{
+    const title = document.getElementById("new-title").value;
+    const content = document.getElementById("new-content").value;
+    const date = new Date().toISOString().split("T")[0];
 
-addNoticeBtn.addEventListener("click",()=>addModal.style.display="flex");
+    if(title && content){
+      createNoticeCard(date, title, content);
 
-saveNotice.addEventListener("click", async ()=>{
-  const title = document.getElementById("new-title").value;
-  const content = document.getElementById("new-content").value;
-  const date = new Date().toISOString().split("T")[0];
+      try {
+        await fetch(WEB_APP_URL,{
+          method:'POST',
+          body:JSON.stringify({date,title,content}),
+          headers:{'Content-Type':'application/json'}
+        });
+      } catch(err){
+        console.error("Google Sheets 저장 실패:",err);
+        alert("Google Sheets 저장 실패! 서버 문제일 수 있습니다.");
+      }
 
-  if(title && content){
-    createNoticeCard(date, title, content);
-
-    try {
-      await fetch(WEB_APP_URL,{
-        method:'POST',
-        body:JSON.stringify({date,title,content}),
-        headers:{'Content-Type':'application/json'}
-      });
-    } catch(err){
-      console.error("Google Sheets 저장 실패:",err);
-      alert("Google Sheets 저장 실패! 서버 또는 CORS 문제일 수 있습니다.");
+      addModal.style.display="none";
+      document.getElementById("new-title").value='';
+      document.getElementById("new-content").value='';
     }
+  });
 
-    addModal.style.display="none";
-    document.getElementById("new-title").value='';
-    document.getElementById("new-content").value='';
+  // ----- JSONP로 공지사항 불러오기 -----
+  function loadNotices(){
+    const callbackName = "handleNotices";
+    const existing = document.getElementById('jsonp-notices');
+    if (existing) existing.remove();
+
+    const script = document.createElement('script');
+    script.id = 'jsonp-notices';
+    script.src = `${WEB_APP_URL}?callback=${callbackName}`;
+    script.onerror = () => console.error('JSONP script load error');
+    document.body.appendChild(script);
   }
-});
 
-// ----- Google Sheets 불러오기 -----
-async function loadNotices(){
-  try{
-    const res = await fetch(WEB_APP_URL);
-    const data = await res.json();
+  // JSONP 콜백
+  window.handleNotices = function(data){
+    if(!data) return;
     data.forEach(item=>{
       const dateOnly = item.date.split("T")[0];
       createNoticeCard(dateOnly, item.title, item.content);
     });
-  }catch(err){
-    console.error("공지사항 불러오기 실패:",err);
-    alert("공지사항 불러오기 실패! 서버 또는 CORS 문제일 수 있습니다.");
-  }
-}
-loadNotices();
+  };
+
+  loadNotices();
+});
 </script>
 
 </body>
