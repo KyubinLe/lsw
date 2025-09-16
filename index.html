@@ -10,7 +10,6 @@
   <!-- 헤더 -->
   <header>
     <div class="container">
-      <!-- 로고 이미지 -->
       <a href="index.html" class="logo">
         <img src="lsw.png" alt="Los Santos Works Logo">
       </a>
@@ -32,6 +31,7 @@
       <p>도시를 움직이는 종합 일자리 플랫폼 <strong>LS Works</strong> 입니다.</p>
     </section>
 
+    <!-- 카드 섹션 -->
     <section class="features container">
       <div class="feature-card">
         <h3>🚚 Transit & Logistics</h3>
@@ -45,6 +45,10 @@
         <h3>👔 Workforce Solutions</h3>
         <p>시민 맞춤형 인재 매칭 & 채용으로 안정적 근로 기회를 제공합니다.</p>
       </div>
+      <div class="feature-card" data-modal="modal1">
+        <h3>⚙ Operations Support</h3>
+        <p>경영지원팀의 핵심 직무 안내</p>
+      </div>
     </section>
   </main>
 
@@ -55,5 +59,46 @@
       <p>© 2025 LS Works. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- 예시 모달 (Operations Support) -->
+  <div class="modal" id="modal1">
+    <div class="modal-content cards-container">
+      <span class="close-btn">&times;</span>
+      <h3>⚙ Operations Support – 경영지원팀</h3>
+      <div class="modal-cards">
+        <div class="modal-card">
+          👔 <b>인사 담당</b><br>채용·교육·인사 평가·복지 제도 운영 등 인사 관리.
+        </div>
+        <div class="modal-card">
+          💼 <b>경영지원담당</b><br>내부 문서 관리, 팀 간 조율, 예산 집행 등 경영지원 핵심 업무.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 모달 제어
+    const cards = document.querySelectorAll('.feature-card');
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const modalId = card.getAttribute('data-modal');
+        if(modalId) document.getElementById(modalId).style.display = 'flex';
+      });
+    });
+
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.parentElement.style.display = 'none';
+      });
+    });
+
+    window.addEventListener('click', e => {
+      if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
